@@ -1,0 +1,6 @@
+framework module Pods_QokkyAppProject {
+  umbrella header "Pods-QokkyAppProject-umbrella.h"
+
+  export *
+  module * { export * }
+}
