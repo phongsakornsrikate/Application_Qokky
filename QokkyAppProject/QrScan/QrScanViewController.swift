@@ -54,7 +54,7 @@ class QrScanViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
                self.view.bringSubviewToFront(backBtn)
 
                session.startRunning()
-           
+           ///test
            
     }
     
