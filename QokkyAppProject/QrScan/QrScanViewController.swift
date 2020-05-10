@@ -33,6 +33,7 @@ class QrScanViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
                    let input = try AVCaptureDeviceInput(device: captureDevice!)
                    session.addInput(input)
                }
+                
                catch
                {
                    print ("ERROR")
@@ -99,7 +100,7 @@ class QrScanViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
                    
                    let vc = storyboard?.instantiateViewController(withIdentifier: "CardBillViewController") as! CardBillViewController
                                   navigationController?.pushViewController(vc, animated: true)   ///// go to HomePage
-                                            
+                   vc.QrCodeId = stringURL
                    self.session.stopRunning()
                }
            }

@@ -8,6 +8,7 @@
 
 import UIKit
 import AVFoundation
+import Firebase
 
 class CardBillViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,UITableViewDelegate,UITableViewDataSource, AVCaptureMetadataOutputObjectsDelegate {
 
@@ -26,7 +27,7 @@ class CardBillViewController: UIViewController,UICollectionViewDelegate,UICollec
 
 
 
-
+    var QrCodeId:String = ""
      
     var video = AVCaptureVideoPreviewLayer()
     //Creating session
@@ -81,16 +82,20 @@ class CardBillViewController: UIViewController,UICollectionViewDelegate,UICollec
 
             session.startRunning()
         
+            readDataQrcode()
         
     }
 
 //////////////  category CollectionView /////////////////////
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return typeFoodStoreClassArr.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "categoryBillPageCollectionViewCell", for: indexPath) as! categoryBillPageCollectionViewCell
+        let typeFoodStoreClass:typeFoodStoreClass
+        typeFoodStoreClass = typeFoodStoreClassArr[indexPath.row]
+        cell.categoryName.text = typeFoodStoreClass.typeName
         return cell
     }
   ////////////// Menu TableView /////////////////////
@@ -108,7 +113,130 @@ class CardBillViewController: UIViewController,UICollectionViewDelegate,UICollec
     
     
     
+    /////// QueryQrCode store /////////////////////////////////////////////////////////////////
+    let db = Firestore.firestore()
+    //var QrCodeId:String
+    func readDataQrcode(){
+           db.collection("QrCode").document(QrCodeId).addSnapshotListener { documentSnapshot, error in
+               
+               guard let document = documentSnapshot else {
+                   print("Error fetching document: \(error!)")
+                   return
+               }
+               let data = document.data()
+              
+               print("Current data: \(data)")
+              
+            self.tableNoLabel.text = data?["TableNo"] as? String ?? "none"
+            let storeID = data?["StoreID"] as? String
+
+            print(storeID)
+            if(data?["StoreID"] != nil && data?["StoreID"] as? String != ""){
+                 self.readDataStore(storeID!)
+            }
+           
+            else{
+                print("Qrcode error")
+            }
+          
+             
+           }
+           
+       }
+       
+     /////// Query Detail store /////////////////////////////////////////////////////////////////
+    func readDataStore(_ storeID:String){
+              db.collection("Store").document(storeID).addSnapshotListener { documentSnapshot, error in
+                  
+                  guard let document = documentSnapshot else {
+                      print("Error fetching document: \(error!)")
+                      return
+                  }
+                  let data = document.data()
+                 
+                  print("Current data: \(data)")
+                 
+               
+                
+                if(data?["Name"] != nil && data?["Name"] as? String != ""){
+                   self.nameStoreLabel.text = data?["Name"] as? String
+                     
+                    if(data?["FoodStoreID"] != nil && data?["FoodStoreID"] as? String != ""){
+                        let foodStoreID = data?["FoodStoreID"] as? String
+                        self.readDataTypeFoodsStore(foodStoreID!)
+                
+                }
+                
+                }
+                else{
+                    self.nameStoreLabel.text = "anonymous"
+                }
+              }
+              
+          }
+ 
+    /////// Query Detai type  food store /////////////////////////////////////////////////////////////////
+  
+    var  typeFoodStoreClassArr = [typeFoodStoreClass]()
+           
+    func readDataTypeFoodsStore(_ FoodStoreID:String) {
+               let colRef = db.collection("Foods").document(FoodStoreID).collection("typefoods")
+               colRef.getDocuments() { (querySnapshot, err) in
+                   if err != nil {
+                       print("error")
+                       
+                   }
+                   else {
+                      
+                       self.typeFoodStoreClassArr.removeAll()
+                       for doc in querySnapshot!.documents {
+                        print("\(doc.documentID) => \(doc.data())")
+                           let TypeName = doc.get("TypeName") as? String
+                        let Data = typeFoodStoreClass(typeName:TypeName)
+                        self.typeFoodStoreClassArr.insert(Data, at: 0) //sort Data มากไปน้อย
+                           self.catagoryCollectionView.reloadData()
+                        self.readDataFoodsStore(FoodStoreID,"อาหาร")
+                       }
+
+                   
+                   }
+               }
+    }
     
+    
+      /////// Query Detai food store /////////////////////////////////////////////////////////////////
+      
+        var  foodStoreClassArr = [foodStoreClass]()
+               
+    func readDataFoodsStore(_ FoodStoreID:String,_ TypeName:String) {
+            let colRef = db.collection("Foods").document(FoodStoreID).collection("FoodsID")
+                   colRef.whereField("FoodType", isEqualTo: TypeName).getDocuments() { (querySnapshot, err) in
+                       if err != nil {
+                           print("error")
+                           
+                       }
+                       else {
+                          
+                           self.foodStoreClassArr.removeAll()
+                           for doc in querySnapshot!.documents {
+                            print("\(doc.documentID) => \(doc.data())")
+                               let FoodName = doc.get("FoodName") as? String
+                          //  let Data = typeFoodStoreClass(typeName:TypeName)
+                          //  self.typeFoodStoreClassArr.insert(Data, at: 0) //sort Data มากไปน้อย
+                               self.menuTableView.reloadData()
+                            let alert = UIAlertController(title: "food", message: FoodName, preferredStyle: .alert)
+                                 alert.addAction(UIAlertAction(title: "Retake", style: .default, handler: nil))
+                                                     alert.addAction(UIAlertAction(title: "Copy", style: .default, handler: { (nil) in
+                                                         UIPasteboard.general.string = FoodName
+    
+                                                     }))
+                            self.present(alert, animated: true, completion: nil)
+                           }
+
+                       
+                       }
+                   }
+        }
     ///////Open Scan Qrcode page //////////////////////////////////////////////
     
     @IBAction func closeClicked(_ sender:Any){

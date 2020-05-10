@@ -34,6 +34,11 @@
 		441F85B524096BEB009F2BFD /* notificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441F85B324096BEA009F2BFD /* notificationViewController.swift */; };
 		441F85B624096BEB009F2BFD /* notificationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 441F85B424096BEA009F2BFD /* notificationViewController.xib */; };
 		4440F49324447CAB00061C39 /* QrScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4440F49224447CAB00061C39 /* QrScanViewController.swift */; };
+		445713652461B6A2001BDC5D /* MyRewardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445713642461B6A2001BDC5D /* MyRewardViewController.swift */; };
+		445713682461B6E7001BDC5D /* MyRewardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445713672461B6E7001BDC5D /* MyRewardTableViewCell.swift */; };
+		4457136A2461BF4D001BDC5D /* MyRewardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445713692461BF4D001BDC5D /* MyRewardCollectionViewCell.swift */; };
+		4457136C2467CD71001BDC5D /* foodStoreClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4457136B2467CD70001BDC5D /* foodStoreClass.swift */; };
+		4457136E2467D099001BDC5D /* typeFoodStoreClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4457136D2467D099001BDC5D /* typeFoodStoreClass.swift */; };
 		44A62CB6241A792A00C75C6B /* coverImageStoreClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A62CB5241A792A00C75C6B /* coverImageStoreClass.swift */; };
 		44A62CB8241ABC1100C75C6B /* coverImageViewStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A62CB7241ABC1100C75C6B /* coverImageViewStore.swift */; };
 		44D859822401356200466082 /* GoogleService-Info (2).plist in Resources */ = {isa = PBXBuildFile; fileRef = 44D859812401356100466082 /* GoogleService-Info (2).plist */; };
@@ -126,6 +131,11 @@
 		441F85B324096BEA009F2BFD /* notificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = notificationViewController.swift; sourceTree = "<group>"; };
 		441F85B424096BEA009F2BFD /* notificationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = notificationViewController.xib; sourceTree = "<group>"; };
 		4440F49224447CAB00061C39 /* QrScanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrScanViewController.swift; sourceTree = "<group>"; };
+		445713642461B6A2001BDC5D /* MyRewardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRewardViewController.swift; sourceTree = "<group>"; };
+		445713672461B6E7001BDC5D /* MyRewardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRewardTableViewCell.swift; sourceTree = "<group>"; };
+		445713692461BF4D001BDC5D /* MyRewardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRewardCollectionViewCell.swift; sourceTree = "<group>"; };
+		4457136B2467CD70001BDC5D /* foodStoreClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = foodStoreClass.swift; sourceTree = "<group>"; };
+		4457136D2467D099001BDC5D /* typeFoodStoreClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = typeFoodStoreClass.swift; sourceTree = "<group>"; };
 		44A62CB5241A792A00C75C6B /* coverImageStoreClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = coverImageStoreClass.swift; sourceTree = "<group>"; };
 		44A62CB7241ABC1100C75C6B /* coverImageViewStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = coverImageViewStore.swift; sourceTree = "<group>"; };
 		44D859812401356100466082 /* GoogleService-Info (2).plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info (2).plist"; sourceTree = "<group>"; };
@@ -219,6 +229,7 @@
 				4402223F23D761C800FCC5D6 /* Main.storyboard */,
 				441F859824052F36009F2BFD /* Login */,
 				4402224223D761CC00FCC5D6 /* Assets.xcassets */,
+				445713662461B6B6001BDC5D /* MyReward */,
 				44E371172412ACBD000732BD /* MyRewardDetail */,
 				44E371102412A845000732BD /* CouponExchange */,
 				44F809C8240AC3C60096C8A8 /* AllReward */,
@@ -261,6 +272,8 @@
 				44113FDF24499B0F000672CB /* CardBillViewController.swift */,
 				44113FE8244B4863000672CB /* menuTableViewCell.swift */,
 				44113FE6244AF3E7000672CB /* categoryBillPageCollectionViewCell.swift */,
+				4457136B2467CD70001BDC5D /* foodStoreClass.swift */,
+				4457136D2467D099001BDC5D /* typeFoodStoreClass.swift */,
 			);
 			name = Bill;
 			sourceTree = "<group>";
@@ -306,6 +319,16 @@
 				4440F49224447CAB00061C39 /* QrScanViewController.swift */,
 			);
 			path = QrScan;
+			sourceTree = "<group>";
+		};
+		445713662461B6B6001BDC5D /* MyReward */ = {
+			isa = PBXGroup;
+			children = (
+				445713642461B6A2001BDC5D /* MyRewardViewController.swift */,
+				445713672461B6E7001BDC5D /* MyRewardTableViewCell.swift */,
+				445713692461BF4D001BDC5D /* MyRewardCollectionViewCell.swift */,
+			);
+			path = MyReward;
 			sourceTree = "<group>";
 		};
 		44E37107240FB590000732BD /* RewardDetail */ = {
@@ -677,11 +700,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				44113FEB244C99E8000672CB /* CardBillSummaryViewController.swift in Sources */,
+				445713682461B6E7001BDC5D /* MyRewardTableViewCell.swift in Sources */,
+				4457136A2461BF4D001BDC5D /* MyRewardCollectionViewCell.swift in Sources */,
 				44F809C3240AB33B0096C8A8 /* PopularSearchCollectionViewCell.swift in Sources */,
 				44F809C1240A860F0096C8A8 /* RecentSearchCollectionViewCell.swift in Sources */,
+				445713652461B6A2001BDC5D /* MyRewardViewController.swift in Sources */,
 				441F85AC2406C33E009F2BFD /* allStoreCollectionViewCell.swift in Sources */,
 				441F85A22406B66C009F2BFD /* categoryCollectionViewCell.swift in Sources */,
 				441F85B524096BEB009F2BFD /* notificationViewController.swift in Sources */,
+				4457136C2467CD71001BDC5D /* foodStoreClass.swift in Sources */,
 				44F809D5240D04500096C8A8 /* HotRewardStoreCollectionViewCell.swift in Sources */,
 				441F85A024067454009F2BFD /* hotAreaCollectionViewCell.swift in Sources */,
 				44E3710F2412A83C000732BD /* CouponExchangeViewController.swift in Sources */,
@@ -696,6 +723,7 @@
 				44F809D1240CE0BA0096C8A8 /* StoreMainTableViewCell.swift in Sources */,
 				44E37104240D0ACA000732BD /* RewardStoreCollectionViewCell.swift in Sources */,
 				44E37109240FB5C1000732BD /* RewardDetailTableViewCell.swift in Sources */,
+				4457136E2467D099001BDC5D /* typeFoodStoreClass.swift in Sources */,
 				4402226C23D99DC400FCC5D6 /* LoginViewController.swift in Sources */,
 				44E371122412A881000732BD /* CouponExchangeTableViewCell.swift in Sources */,
 				44F809BC240A7FD40096C8A8 /* SearchViewController.swift in Sources */,
