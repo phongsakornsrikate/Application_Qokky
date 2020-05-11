@@ -2121,7 +2121,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="342" height="102"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="imageEx" translatesAutoresizingMaskIntoConstraints="NO" id="OeF-Lt-9uu">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="imageEx" translatesAutoresizingMaskIntoConstraints="NO" id="OeF-Lt-9uu">
                                                     <rect key="frame" x="8" y="11" width="93" height="83"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
@@ -2143,11 +2143,17 @@
                                                     <rect key="frame" x="215" y="25" width="43" height="44"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" image="Group 380-1"/>
+                                                    <connections>
+                                                        <action selector="reduceFoodOrder:" destination="jqf-1e-xIX" eventType="primaryActionTriggered" id="365-Tq-VVf"/>
+                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yAE-9t-bDp">
                                                     <rect key="frame" x="284" y="25" width="43" height="44"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" image="Group 338"/>
+                                                    <connections>
+                                                        <action selector="addFoodOrder:" destination="jqf-1e-xIX" eventType="primaryActionTriggered" id="mj4-ju-h9d"/>
+                                                    </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Tt-ww-xDH">
                                                     <rect key="frame" x="260" y="35" width="22" height="21"/>
@@ -2189,6 +2195,13 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="foodCoinLabel" destination="8uK-wQ-eXd" id="jfa-Ca-LlS"/>
+                                            <outlet property="foodImage" destination="OeF-Lt-9uu" id="sQ1-Sh-eQe"/>
+                                            <outlet property="foodNameLabel" destination="yve-CY-q1g" id="bsG-KM-cxS"/>
+                                            <outlet property="foodPriceLabel" destination="C2f-DX-1XV" id="Yhu-mQ-CS1"/>
+                                            <outlet property="orderCountLabel" destination="5Tt-ww-xDH" id="BJI-Gv-XXq"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>

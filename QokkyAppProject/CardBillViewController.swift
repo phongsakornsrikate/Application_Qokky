@@ -9,6 +9,7 @@
 import UIKit
 import AVFoundation
 import Firebase
+import Kingfisher
 
 class CardBillViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,UITableViewDelegate,UITableViewDataSource, AVCaptureMetadataOutputObjectsDelegate {
 
@@ -26,7 +27,7 @@ class CardBillViewController: UIViewController,UICollectionViewDelegate,UICollec
 
 
 
-
+    var foodStoreID = ""
     var QrCodeId:String = ""
      
     var video = AVCaptureVideoPreviewLayer()
@@ -83,7 +84,7 @@ class CardBillViewController: UIViewController,UICollectionViewDelegate,UICollec
             session.startRunning()
         
             readDataQrcode()
-        
+           
     }
 
 //////////////  category CollectionView /////////////////////
@@ -98,13 +99,45 @@ class CardBillViewController: UIViewController,UICollectionViewDelegate,UICollec
         cell.categoryName.text = typeFoodStoreClass.typeName
         return cell
     }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "categoryBillPageCollectionViewCell", for: indexPath) as! categoryBillPageCollectionViewCell
+        let typeFoodStoreClass:typeFoodStoreClass
+        typeFoodStoreClass = typeFoodStoreClassArr[indexPath.row]
+        let alert = UIAlertController(title: cell.categoryName.text!, message: foodStoreID, preferredStyle: .alert)
+                                        alert.addAction(UIAlertAction(title: "Retake", style: .default, handler: nil))
+                                                            alert.addAction(UIAlertAction(title: "Copy", style: .default, handler: { (nil) in
+                                                                UIPasteboard.general.string = self.foodStoreID
+
+                                                            }))
+                                   self.present(alert, animated: true, completion: nil)
+                                  
+      
+        //cell.categoryName.text = typeFoodStoreClass.typeName
+        self.readDataFoodsStore(self.foodStoreID,typeFoodStoreClass.typeName!)
+        reloadInputViews()
+        
+        
+    }
   ////////////// Menu TableView /////////////////////
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return foodStoreClassArr.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "menuTableViewCell", for: indexPath) as! menuTableViewCell
+        let foodStoreClass:foodStoreClass
+        foodStoreClass = foodStoreClassArr[indexPath.row]
+        cell.foodNameLabel.text = foodStoreClass.foodName
+        cell.foodPriceLabel.text = "$ \(foodStoreClass.foodPrice!)"
+        cell.foodCoinLabel.text = "ได้ \(foodStoreClass.foodCoin!) เหรียญ"
+        
+
+               if(foodStoreClass.foodImage != nil){
+                cell.foodImage.kf.setImage(with:URL(string: foodStoreClass.foodImage!),placeholder: nil,options: [.transition(.fade(0.7))],progressBlock: nil)
+        }
+        
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -162,9 +195,9 @@ class CardBillViewController: UIViewController,UICollectionViewDelegate,UICollec
                    self.nameStoreLabel.text = data?["Name"] as? String
                      
                     if(data?["FoodStoreID"] != nil && data?["FoodStoreID"] as? String != ""){
-                        let foodStoreID = data?["FoodStoreID"] as? String
-                        self.readDataTypeFoodsStore(foodStoreID!)
-                
+                        self.foodStoreID = (data?["FoodStoreID"] as? String)!
+                        self.readDataTypeFoodsStore(self.foodStoreID)
+                        self.readDataFoodsStore(self.foodStoreID, "อาหาร")
                 }
                 
                 }
@@ -195,7 +228,7 @@ class CardBillViewController: UIViewController,UICollectionViewDelegate,UICollec
                         let Data = typeFoodStoreClass(typeName:TypeName)
                         self.typeFoodStoreClassArr.insert(Data, at: 0) //sort Data มากไปน้อย
                            self.catagoryCollectionView.reloadData()
-                        self.readDataFoodsStore(FoodStoreID,"อาหาร")
+                       // self.readDataFoodsStore(FoodStoreID,"อาหาร")
                        }
 
                    
@@ -220,23 +253,45 @@ class CardBillViewController: UIViewController,UICollectionViewDelegate,UICollec
                            self.foodStoreClassArr.removeAll()
                            for doc in querySnapshot!.documents {
                             print("\(doc.documentID) => \(doc.data())")
-                               let FoodName = doc.get("FoodName") as? String
-                          //  let Data = typeFoodStoreClass(typeName:TypeName)
-                          //  self.typeFoodStoreClassArr.insert(Data, at: 0) //sort Data มากไปน้อย
-                               self.menuTableView.reloadData()
-                            let alert = UIAlertController(title: "food", message: FoodName, preferredStyle: .alert)
-                                 alert.addAction(UIAlertAction(title: "Retake", style: .default, handler: nil))
-                                                     alert.addAction(UIAlertAction(title: "Copy", style: .default, handler: { (nil) in
-                                                         UIPasteboard.general.string = FoodName
-    
-                                                     }))
-                            self.present(alert, animated: true, completion: nil)
+                                let FoodID = doc.get("FoodID") as? String
+                                let FoodName = doc.get("FoodName") as? String
+                                let FoodImage = doc.get("FoodImage") as? String
+                                let FoodPrice = doc.get("FoodPrice") as? Int
+                                let FoodCoin = doc.get("GetCoin") as? Int
+                                let FoodQokkyCoin = doc.get("GetQokkyCoin") as? String
+                              
+                           
+                                
+                                
+                            
+                          
+                            let Data = foodStoreClass(foodName: FoodName, foodPrice: String(FoodPrice!), foodCoin: String(FoodCoin!), foodQokkyCoin: FoodQokkyCoin, foodImage: FoodImage)
+                            self.foodStoreClassArr.insert(Data, at: 0) //sort Data มากไปน้อย
+                            
+                            
+                            
+                            
+                            
+                            let alert = UIAlertController(title: "food", message: FoodImage, preferredStyle: .alert)
+                                                             alert.addAction(UIAlertAction(title: "Retake", style: .default, handler: nil))
+                                                                                 alert.addAction(UIAlertAction(title: "Copy", style: .default, handler: { (nil) in
+                                                                                    UIPasteboard.general.string = FoodImage
+                            
+                                                                                 }))
+                                                        self.present(alert, animated: true, completion: nil)
+                            
+                            self.menuTableView.reloadData()
+
                            }
 
                        
                        }
                    }
         }
+    
+   
+    
+    
     ///////Open Scan Qrcode page //////////////////////////////////////////////
     
     @IBAction func closeClicked(_ sender:Any){

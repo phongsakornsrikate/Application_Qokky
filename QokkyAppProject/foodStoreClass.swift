@@ -9,7 +9,16 @@
 import Foundation
 class foodStoreClass {
     var foodName:String?
-    var foodImage:String?
     var foodPrice:String?
+    var foodCoin:String?
+    var foodQokkyCoin:String?
+    var foodImage:String?
+    init(foodName:String?,foodPrice:String?,foodCoin:String?,foodQokkyCoin:String?,foodImage:String?){
+        self.foodName = foodName
+        self.foodPrice = foodPrice
+        self.foodCoin = foodCoin
+        self.foodQokkyCoin = foodQokkyCoin
+        self.foodImage = foodImage
+    }
     
 }
