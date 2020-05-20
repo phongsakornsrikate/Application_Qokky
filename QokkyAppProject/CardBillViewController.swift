@@ -25,10 +25,15 @@ class CardBillViewController: UIViewController,UICollectionViewDelegate,UICollec
     @IBOutlet weak var priceLabel:UILabel!
     @IBOutlet weak var bgBillImage:UIImageView!
     @IBOutlet weak var closeButton:UIButton!
+    
+  
+    
+    
 
 
   
     var foodStoreID = ""
+    var FoodID = ""
     var QrCodeId:String = ""
      
     var video = AVCaptureVideoPreviewLayer()
@@ -115,6 +120,7 @@ class CardBillViewController: UIViewController,UICollectionViewDelegate,UICollec
             FoodStore = foodStoreClassArr[indexPath.row]
             cell.foodNameLabel.text = FoodStore.foodName
             cell.foodPriceLabel.text = "\(FoodStore.foodPrice!) บาท"
+            cell.foodCoinLabel.text = FoodStore.foodCoin
                if(FoodStore.foodImage != nil){
                 cell.foodImage.kf.setImage(with:URL(string: FoodStore.foodImage!),placeholder: nil,options: [.transition(.fade(0.7))],progressBlock: nil)
                     }
@@ -142,8 +148,24 @@ class CardBillViewController: UIViewController,UICollectionViewDelegate,UICollec
         cell.categoryName.text = typeFoodStoreClass.typeName
         self.readDataFoodsStore(self.foodStoreID,typeFoodStoreClass.typeName!)
         }
+            
+            
         else{
+            let FoodStore:foodStoreClass
+            FoodStore = foodStoreClassArr[indexPath.row]
             let vc = storyboard?.instantiateViewController(withIdentifier: "FoodDetatilViewController") as! FoodDetatilViewController
+            vc.getfoodID = self.FoodID
+            vc.getStoreID = self.QrCodeId
+            vc.getStoreName = nameStoreLabel.text!
+            vc.getTableNo = tableNoLabel.text!
+            vc.getfoodImage = FoodStore.foodImage!
+            vc.getfoodName = FoodStore.foodName!
+            vc.getfoodCoin = FoodStore.foodCoin!
+            vc.getfoodPrice = FoodStore.foodPrice!
+            
+      
+            
+            
               navigationController?.pushViewController(vc, animated: true)   ///// go to HomePage
         }
                              
@@ -302,7 +324,7 @@ class CardBillViewController: UIViewController,UICollectionViewDelegate,UICollec
     
     
     /////// Query food Menu //////////////////////////////////////////////////////////
-
+    
    //   let dbRef = Firestore.firestore()
      var  foodStoreClassArr = [foodStoreClass]()
      func readDataFoodsStore(_ FoodStoreID:String,_ TypeName:String) {
@@ -318,10 +340,11 @@ class CardBillViewController: UIViewController,UICollectionViewDelegate,UICollec
                            self.foodStoreClassArr.removeAll()
                              for doc in querySnapshot!.documents {
                               print("\(doc.documentID) => \(doc.data())")
-                                  let FoodID = doc.get("FoodID") as? String
+                                  self.FoodID = (doc.get("FoodID") as? String)!
                                   let FoodName = doc.get("FoodName") as? String
                                   let FoodImage = doc.get("FoodImage") as? String
                                   let FoodPrice = doc.get("FoodPrice") as? Int
+                                  let FoodCoin = doc.get("GetCoin") as? Int
 
 
 
@@ -329,7 +352,7 @@ class CardBillViewController: UIViewController,UICollectionViewDelegate,UICollec
 
 
 
-                              let Data = foodStoreClass(foodName: FoodName, foodPrice: String(FoodPrice!), foodImage: FoodImage)
+                              let Data = foodStoreClass(foodName: FoodName, foodPrice: String(FoodPrice!), foodImage: FoodImage,foodCoin: String(FoodCoin!))
                                self.foodStoreClassArr.insert(Data, at: 0) //sort Data มากไปน้อย
 
                                 self.menuCollectionView.reloadData()

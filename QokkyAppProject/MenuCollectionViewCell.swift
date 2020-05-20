@@ -12,6 +12,7 @@ class MenuCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var foodNameLabel:UILabel!
     @IBOutlet weak var foodPriceLabel:UILabel!
     @IBOutlet weak var foodImage:UIImageView!
+    @IBOutlet weak var foodCoinLabel:UILabel!
 
 
 }

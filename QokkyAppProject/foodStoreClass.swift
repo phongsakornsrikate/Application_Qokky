@@ -12,9 +12,11 @@ class foodStoreClass {
     var foodName:String?
     var foodPrice:String?
     var foodImage:String?
-    init(foodName:String?,foodPrice:String,foodImage:String?) {
+    var foodCoin:String?
+    init(foodName:String?,foodPrice:String,foodImage:String?,foodCoin:String?) {
         self.foodName = foodName
         self.foodPrice = foodPrice
         self.foodImage = foodImage
+        self.foodCoin = foodCoin
     }
 }

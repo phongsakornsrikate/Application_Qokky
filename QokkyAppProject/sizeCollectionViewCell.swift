@@ -9,5 +9,6 @@
 import UIKit
 
 class sizeCollectionViewCell: UICollectionViewCell {
-    
+    @IBOutlet weak var sizeDetailLabel:UILabel!
+    @IBOutlet weak var sizePriceLabel:UILabel!
 }

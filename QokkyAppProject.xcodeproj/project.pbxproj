@@ -44,6 +44,8 @@
 		4457137B246D4353001BDC5D /* foodDateilTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4457137A246D4353001BDC5D /* foodDateilTableViewCell.swift */; };
 		4457137D246D4472001BDC5D /* sizeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4457137C246D4472001BDC5D /* sizeCollectionViewCell.swift */; };
 		4457137F246D509C001BDC5D /* adjunctTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4457137E246D509C001BDC5D /* adjunctTableViewCell.swift */; };
+		446A5FB124742F0100FC9708 /* sizeDetailClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446A5FB024742F0100FC9708 /* sizeDetailClass.swift */; };
+		446A5FB524757A3C00FC9708 /* adjunctDetailClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446A5FB424757A3C00FC9708 /* adjunctDetailClass.swift */; };
 		44A62CB6241A792A00C75C6B /* coverImageStoreClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A62CB5241A792A00C75C6B /* coverImageStoreClass.swift */; };
 		44A62CB8241ABC1100C75C6B /* coverImageViewStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A62CB7241ABC1100C75C6B /* coverImageViewStore.swift */; };
 		44D859822401356200466082 /* GoogleService-Info (2).plist in Resources */ = {isa = PBXBuildFile; fileRef = 44D859812401356100466082 /* GoogleService-Info (2).plist */; };
@@ -146,6 +148,8 @@
 		4457137A246D4353001BDC5D /* foodDateilTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = foodDateilTableViewCell.swift; sourceTree = "<group>"; };
 		4457137C246D4472001BDC5D /* sizeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sizeCollectionViewCell.swift; sourceTree = "<group>"; };
 		4457137E246D509C001BDC5D /* adjunctTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = adjunctTableViewCell.swift; sourceTree = "<group>"; };
+		446A5FB024742F0100FC9708 /* sizeDetailClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sizeDetailClass.swift; sourceTree = "<group>"; };
+		446A5FB424757A3C00FC9708 /* adjunctDetailClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = adjunctDetailClass.swift; sourceTree = "<group>"; };
 		44A62CB5241A792A00C75C6B /* coverImageStoreClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = coverImageStoreClass.swift; sourceTree = "<group>"; };
 		44A62CB7241ABC1100C75C6B /* coverImageViewStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = coverImageViewStore.swift; sourceTree = "<group>"; };
 		44D859812401356100466082 /* GoogleService-Info (2).plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info (2).plist"; sourceTree = "<group>"; };
@@ -350,6 +354,8 @@
 				4457137A246D4353001BDC5D /* foodDateilTableViewCell.swift */,
 				4457137C246D4472001BDC5D /* sizeCollectionViewCell.swift */,
 				4457137E246D509C001BDC5D /* adjunctTableViewCell.swift */,
+				446A5FB024742F0100FC9708 /* sizeDetailClass.swift */,
+				446A5FB424757A3C00FC9708 /* adjunctDetailClass.swift */,
 			);
 			name = FoodDetail;
 			sourceTree = "<group>";
@@ -742,6 +748,7 @@
 				44F809D3240CE16C0096C8A8 /* FrontImageCollectionViewCell.swift in Sources */,
 				44A62CB8241ABC1100C75C6B /* coverImageViewStore.swift in Sources */,
 				441F85A42406BBA0009F2BFD /* recommendCollectionViewCell.swift in Sources */,
+				446A5FB124742F0100FC9708 /* sizeDetailClass.swift in Sources */,
 				44113FEE244C9A4D000672CB /* billSummaryTableViewCell.swift in Sources */,
 				44F809D1240CE0BA0096C8A8 /* StoreMainTableViewCell.swift in Sources */,
 				44E37104240D0ACA000732BD /* RewardStoreCollectionViewCell.swift in Sources */,
@@ -772,6 +779,7 @@
 				44571376246AF7F4001BDC5D /* foodStoreClass.swift in Sources */,
 				44F809CE240CDFBD0096C8A8 /* StoreMainViewController.swift in Sources */,
 				44113FE9244B4863000672CB /* menuTableViewCell.swift in Sources */,
+				446A5FB524757A3C00FC9708 /* adjunctDetailClass.swift in Sources */,
 				44E3710D241004B1000732BD /* ImageRewardDetailRecommendCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

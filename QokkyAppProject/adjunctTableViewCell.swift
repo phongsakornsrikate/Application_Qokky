@@ -9,7 +9,9 @@
 import UIKit
 
 class adjunctTableViewCell: UITableViewCell {
-
+    @IBOutlet weak var adjunctDetailLabel:UILabel!
+    @IBOutlet weak var adjunctPriceLabel:UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
