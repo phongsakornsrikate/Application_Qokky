@@ -32,6 +32,7 @@ class FoodDetatilViewController: UIViewController,UITableViewDelegate,UITableVie
     @IBOutlet weak var bgView:UIImageView!
     @IBOutlet weak var backButton:UIButton!
     @IBOutlet weak var sizeLabel:UILabel!
+    @IBOutlet weak var foodMenuCount:UILabel!
 
     var getStoreID  = ""
     var getfoodID = ""
@@ -93,9 +94,10 @@ class FoodDetatilViewController: UIViewController,UITableViewDelegate,UITableVie
                   sizeCollectionView.delegate = self
                   sizeCollectionView.dataSource = self
         
-                    setDataStore()
+              //      setDataStore()
       
             readDataSizeFood("TeHHUY1QBmv61Q0ftw4Q","OuKAxQDZDIzAHWKRnU0O")
+            readDataAdjunctFood("TeHHUY1QBmv61Q0ftw4Q","OuKAxQDZDIzAHWKRnU0O")
         
     }
     
@@ -137,7 +139,7 @@ class FoodDetatilViewController: UIViewController,UITableViewDelegate,UITableVie
 
 
 
-//                                let alert = UIAlertController(title: "food", message: String(sizePrice!), preferredStyle: .alert)
+//                                let alert = UIAlertController(title: sizeDetail, message: String(sizePrice!), preferredStyle: .alert)
 //                                                                                                              alert.addAction(UIAlertAction(title: "Retake", style: .default, handler: nil))
 //                                                                                                                                  alert.addAction(UIAlertAction(title: "Copy", style: .default, handler: { (nil) in
 //                                                                                                                                   UIPasteboard.general.string = String(sizePrice!)
@@ -183,20 +185,20 @@ class FoodDetatilViewController: UIViewController,UITableViewDelegate,UITableVie
 
 
 
-
-    //                                let alert = UIAlertController(title: "food", message: String(sizePrice!), preferredStyle: .alert)
-    //                                                                                                              alert.addAction(UIAlertAction(title: "Retake", style: .default, handler: nil))
-    //                                                                                                                                  alert.addAction(UIAlertAction(title: "Copy", style: .default, handler: { (nil) in
-    //                                                                                                                                   UIPasteboard.general.string = String(sizePrice!)
-    //
-    //                                                                                                                                  }))
-    //                                                                                                         self.present(alert, animated: true, completion: nil)
-
-                                    
+//
+//                                    let alert = UIAlertController(title: String(adjunctPrice!), message: adjunctDetail, preferredStyle: .alert)
+//                                                                                                                  alert.addAction(UIAlertAction(title: "Retake", style: .default, handler: nil))
+//                                                                                                                                      alert.addAction(UIAlertAction(title: "Copy", style: .default, handler: { (nil) in
+//                                                                                                                                       UIPasteboard.general.string = String(adjunctPrice!)
+//
+//                                                                                                                                      }))
+//                                                                                                             self.present(alert, animated: true, completion: nil)
+////
+//
                                     let Data = adjunctDetailClass(adjunctDatail: adjunctDetail, adjunctPrice: String(adjunctPrice!))
                                      self.adjunctClassArr.insert(Data, at: 0) //sort Data มากไปน้อย
 
-                                      self.sizeCollectionView.reloadData()
+                                      self.adjuncttableView.reloadData()
 
                                    }
 
@@ -209,29 +211,54 @@ class FoodDetatilViewController: UIViewController,UITableViewDelegate,UITableVie
     
     
     
+    ////// add food Order menu ///////////////////////////////////
     
+    
+    @IBAction func addFoodMenu(_ sender:Any){
+       
+            let Count = Int(foodMenuCount.text!)
+            if(Count! >= 0 && Count! < 9){
+                foodMenuCount.text = "0\(String(Count! + 1))"
+
+            }else if(Count! >= 9){
+                foodMenuCount.text = String(Count! + 1)
+            }
+           
+        }
+        
+        @IBAction func deleteFoodMenu(_ sender:Any){
+             let Count = Int(foodMenuCount.text!)
+                if(Count! > 0 && Count! < 10){
+                    foodMenuCount.text = "0\(String(Count! - 1))"
+
+                }else if(Count! > 0){
+                    foodMenuCount.text = String(Count! - 1)
+                }
+               
+        }
     
     /////  tableView ///////////////
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-         if(tableView == maintableView){
-           return 1
-         }else if(tableView == adjuncttableView){
+         if(tableView == adjuncttableView){
             return adjunctClassArr.count
          }else{
-            return 10
+            return 1
         }
        }
        
        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if(tableView == maintableView){
-             let cell = tableView.dequeueReusableCell(withIdentifier: "foodDateilTableViewCell", for: indexPath) as! foodDateilTableViewCell
-            return cell
-        }else if(tableView == adjuncttableView){
-              let cell = tableView.dequeueReusableCell(withIdentifier: "foodDateilTableViewCell", for: indexPath) as! foodDateilTableViewCell
-           return cell
-        }else{
+        if(tableView == adjuncttableView){
+            
             let cell = tableView.dequeueReusableCell(withIdentifier: "adjunctTableViewCell", for: indexPath) as! adjunctTableViewCell
+            let adjunctDetailClass:adjunctDetailClass
+            adjunctDetailClass = adjunctClassArr[indexPath.row]
+            cell.adjunctDetailLabel.text = adjunctDetailClass.adjunctDatail
+            cell.adjunctPriceLabel.text = "$\(adjunctDetailClass.adjunctPrice!)"
+            return cell
+        }
+        else{
+            let cell = tableView.dequeueReusableCell(withIdentifier: "foodDateilTableViewCell", for: indexPath) as! foodDateilTableViewCell
             return cell
         }
        }
@@ -249,6 +276,7 @@ class FoodDetatilViewController: UIViewController,UITableViewDelegate,UITableVie
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if(collectionView == sizeCollectionView){
+            print(sizeClassArr.count)
         return sizeClassArr.count
         }else{
             return 10
@@ -257,16 +285,26 @@ class FoodDetatilViewController: UIViewController,UITableViewDelegate,UITableVie
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+       print(sizeClassArr.count)
         
+           
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "sizeCollectionViewCell", for: indexPath) as! sizeCollectionViewCell
         
       let sizeDetailClass:sizeDetailClass
       sizeDetailClass = sizeClassArr[indexPath.row]
         cell.sizeDetailLabel.text = sizeDetailClass.sizeDatail
-        cell.sizePriceLabel.text = sizeDetailClass.sizePrice
+        cell.sizePriceLabel.text = "$\(sizeDetailClass.sizePrice!)"
+//
+//        let alert = UIAlertController(title: sizeDetailClass.sizePrice, message: sizeDetailClass.sizeDatail, preferredStyle: .alert)
+//                                                                                      alert.addAction(UIAlertAction(title: "Retake", style: .default, handler: nil))
+//                                                                                                          alert.addAction(UIAlertAction(title: "Copy", style: .default, handler: { (nil) in
+//                                                                                                           UIPasteboard.general.string = sizeDetailClass.sizeDatail
+//
+//                                                                                                          }))
+//                                                                                 self.present(alert, animated: true, completion: nil)
             return cell
          
-       
+        
     }
         
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
