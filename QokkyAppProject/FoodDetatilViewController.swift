@@ -34,6 +34,7 @@ class FoodDetatilViewController: UIViewController,UITableViewDelegate,UITableVie
     @IBOutlet weak var sizeLabel:UILabel!
     @IBOutlet weak var foodMenuCount:UILabel!
 
+    var getQrCodeID = ""
     var getStoreID  = ""
     var getfoodID = ""
     var getfoodImage = ""
@@ -53,21 +54,21 @@ class FoodDetatilViewController: UIViewController,UITableViewDelegate,UITableVie
 
          
         // Define capture devcie
-//                   let captureDevice = AVCaptureDevice.default(for: AVMediaType.video)
-//
-//
-//                   do
-//                   {
-//                       let input = try AVCaptureDeviceInput(device: captureDevice!)
-//                       session.addInput(input)
-//                   }
-//                   catch
-//                   {
-//                       print ("ERROR")
-//                   }
-//
-//                   let output = AVCaptureMetadataOutput()
-//                   session.addOutput(output)
+                   let captureDevice = AVCaptureDevice.default(for: AVMediaType.video)
+
+
+                   do
+                   {
+                       let input = try AVCaptureDeviceInput(device: captureDevice!)
+                       session.addInput(input)
+                   }
+                   catch
+                   {
+                       print ("ERROR")
+                   }
+
+                   let output = AVCaptureMetadataOutput()
+                   session.addOutput(output)
 
 
 
@@ -86,7 +87,7 @@ class FoodDetatilViewController: UIViewController,UITableViewDelegate,UITableVie
                    self.view.bringSubviewToFront(addLabel)
                    self.view.bringSubviewToFront(backButton)
         
-              //   session.startRunning()
+                session.startRunning()
                   maintableView.delegate = self
                   maintableView.dataSource = self
                     adjuncttableView.delegate = self
@@ -94,12 +95,40 @@ class FoodDetatilViewController: UIViewController,UITableViewDelegate,UITableVie
                   sizeCollectionView.delegate = self
                   sizeCollectionView.dataSource = self
         
-              //      setDataStore()
-      
-            readDataSizeFood("TeHHUY1QBmv61Q0ftw4Q","OuKAxQDZDIzAHWKRnU0O")
-            readDataAdjunctFood("TeHHUY1QBmv61Q0ftw4Q","OuKAxQDZDIzAHWKRnU0O")
+                    setDataStore()
         
+        let alert = UIAlertController(title: self.getStoreID, message: self.getfoodID, preferredStyle: .alert)
+                                                                                                                      alert.addAction(UIAlertAction(title: "Retake", style: .default, handler: nil))
+                                                                                                                                          alert.addAction(UIAlertAction(title: "Copy", style: .default, handler: { (nil) in
+                                                                                                                                           UIPasteboard.general.string = self.getStoreID
+        
+                                                                                                                                          }))
+                                                                                                                 self.present(alert, animated: true, completion: nil)
+        if(self.getStoreID != "" && self.getfoodID != ""){
+            readDataSizeFood(self.getStoreID,self.getfoodID)
+            readDataAdjunctFood(self.getStoreID,self.getfoodID)
+        }
+        
+        
+     addRefreshController()
     }
+    
+    
+    ///// reload Data slide
+    
+       var refreshControl: UIRefreshControl?
+    
+       func addRefreshController(){
+           refreshControl = UIRefreshControl()
+           refreshControl?.tintColor = UIColor.black
+           refreshControl?.addTarget(self, action: #selector(refreshList), for: .valueChanged)
+        self.maintableView.addSubview(refreshControl!)
+       }
+       
+       @objc func refreshList(){
+           refreshControl?.endRefreshing()
+           maintableView.reloadData()
+       }
     
     
     ////// set data Store //////////////////////////////
@@ -147,11 +176,12 @@ class FoodDetatilViewController: UIViewController,UITableViewDelegate,UITableVie
 //                                                                                                                                  }))
 //                                                                                                         self.present(alert, animated: true, completion: nil)
 
-                                
+                                if(sizePrice != nil){
                                 let Data = sizeDetailClass(sizeDatail: sizeDetail, sizePrice: String(sizePrice!))
                                  self.sizeClassArr.insert(Data, at: 0) //sort Data มากไปน้อย
 
                                   self.sizeCollectionView.reloadData()
+                                }
 
                                }
 
@@ -195,10 +225,12 @@ class FoodDetatilViewController: UIViewController,UITableViewDelegate,UITableVie
 //                                                                                                             self.present(alert, animated: true, completion: nil)
 ////
 //
+                                    if(adjunctPrice != nil){
                                     let Data = adjunctDetailClass(adjunctDatail: adjunctDetail, adjunctPrice: String(adjunctPrice!))
                                      self.adjunctClassArr.insert(Data, at: 0) //sort Data มากไปน้อย
 
                                       self.adjuncttableView.reloadData()
+                                    }
 
                                    }
 
@@ -254,7 +286,9 @@ class FoodDetatilViewController: UIViewController,UITableViewDelegate,UITableVie
             let adjunctDetailClass:adjunctDetailClass
             adjunctDetailClass = adjunctClassArr[indexPath.row]
             cell.adjunctDetailLabel.text = adjunctDetailClass.adjunctDatail
+            if(adjunctDetailClass.adjunctPrice != nil){
             cell.adjunctPriceLabel.text = "$\(adjunctDetailClass.adjunctPrice!)"
+            }
             return cell
         }
         else{
@@ -293,7 +327,9 @@ class FoodDetatilViewController: UIViewController,UITableViewDelegate,UITableVie
       let sizeDetailClass:sizeDetailClass
       sizeDetailClass = sizeClassArr[indexPath.row]
         cell.sizeDetailLabel.text = sizeDetailClass.sizeDatail
+        if(sizeDetailClass.sizePrice != nil){
         cell.sizePriceLabel.text = "$\(sizeDetailClass.sizePrice!)"
+        }
 //
 //        let alert = UIAlertController(title: sizeDetailClass.sizePrice, message: sizeDetailClass.sizeDatail, preferredStyle: .alert)
 //                                                                                      alert.addAction(UIAlertAction(title: "Retake", style: .default, handler: nil))
@@ -321,7 +357,14 @@ class FoodDetatilViewController: UIViewController,UITableViewDelegate,UITableVie
     ///// back page //////////////////////
     @IBAction func backButtonPage(_ sender:Any){
         let vc = storyboard?.instantiateViewController(withIdentifier: "CardBillViewController") as! CardBillViewController
-        vc.QrCodeId = self.getStoreID
+        vc.QrCodeId = self.getQrCodeID
         navigationController?.pushViewController(vc, animated: true)
     }
+    
+    
+    ///add menu in bill///////////////////////////////
+    
+    @IBAction func addOrderToBill(_ sender:Any){
+       
+       }
 }

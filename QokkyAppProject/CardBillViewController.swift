@@ -94,6 +94,8 @@ class CardBillViewController: UIViewController,UICollectionViewDelegate,UICollec
             readDataQrcode()
            
     }
+    
+   
 
 //////////////  category CollectionView /////////////////////
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -136,13 +138,13 @@ class CardBillViewController: UIViewController,UICollectionViewDelegate,UICollec
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "categoryBillPageCollectionViewCell", for: indexPath) as! categoryBillPageCollectionViewCell
         let typeFoodStoreClass:typeFoodStoreClass
         typeFoodStoreClass = typeFoodStoreClassArr[indexPath.row]
-        let alert = UIAlertController(title: cell.categoryName.text!, message: foodStoreID, preferredStyle: .alert)
-                                        alert.addAction(UIAlertAction(title: "Retake", style: .default, handler: nil))
-                                                            alert.addAction(UIAlertAction(title: "Copy", style: .default, handler: { (nil) in
-                                                                UIPasteboard.general.string = self.foodStoreID
-
-                                                            }))
-                                   self.present(alert, animated: true, completion: nil)
+//        let alert = UIAlertController(title: cell.categoryName.text!, message: foodStoreID, preferredStyle: .alert)
+//                                        alert.addAction(UIAlertAction(title: "Retake", style: .default, handler: nil))
+//                                                            alert.addAction(UIAlertAction(title: "Copy", style: .default, handler: { (nil) in
+//                                                                UIPasteboard.general.string = self.foodStoreID
+//
+//                                                            }))
+//                                   self.present(alert, animated: true, completion: nil)
                                   
       
         cell.categoryName.text = typeFoodStoreClass.typeName
@@ -150,18 +152,19 @@ class CardBillViewController: UIViewController,UICollectionViewDelegate,UICollec
         }
             
             
-        else{
+        else if(collectionView == menuCollectionView){
             let FoodStore:foodStoreClass
             FoodStore = foodStoreClassArr[indexPath.row]
             let vc = storyboard?.instantiateViewController(withIdentifier: "FoodDetatilViewController") as! FoodDetatilViewController
-            vc.getfoodID = self.FoodID
-            vc.getStoreID = self.QrCodeId
-            vc.getStoreName = nameStoreLabel.text!
-            vc.getTableNo = tableNoLabel.text!
-            vc.getfoodImage = FoodStore.foodImage!
-            vc.getfoodName = FoodStore.foodName!
-            vc.getfoodCoin = FoodStore.foodCoin!
-            vc.getfoodPrice = FoodStore.foodPrice!
+            vc.getfoodID = FoodStore.foodID ?? "null"
+            vc.getStoreID = self.foodStoreID
+            vc.getQrCodeID = self.QrCodeId
+            vc.getStoreName = nameStoreLabel.text ?? "null"
+            vc.getTableNo = tableNoLabel.text ?? "null"
+            vc.getfoodImage = FoodStore.foodImage ?? "null"
+            vc.getfoodName = FoodStore.foodName ?? "null"
+            vc.getfoodCoin = FoodStore.foodCoin ?? "null"
+            vc.getfoodPrice = FoodStore.foodPrice ?? "null"
             
       
             
@@ -352,7 +355,7 @@ class CardBillViewController: UIViewController,UICollectionViewDelegate,UICollec
 
 
 
-                              let Data = foodStoreClass(foodName: FoodName, foodPrice: String(FoodPrice!), foodImage: FoodImage,foodCoin: String(FoodCoin!))
+                                let Data = foodStoreClass(foodName: FoodName, foodPrice: String(FoodPrice!), foodImage: FoodImage,foodCoin: String(FoodCoin!),foodID: self.FoodID)
                                self.foodStoreClassArr.insert(Data, at: 0) //sort Data มากไปน้อย
 
                                 self.menuCollectionView.reloadData()
