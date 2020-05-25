@@ -35,12 +35,14 @@ class CardBillViewController: UIViewController,UICollectionViewDelegate,UICollec
     var foodStoreID = ""
     var FoodID = ""
     var QrCodeId:String = ""
-    var billID = ""
     
+    
+    var billID = ""
     var storeID = ""
     var key = 0
      
     var video = AVCaptureVideoPreviewLayer()
+    var timestamp:Double! //get time now
     //Creating session
     let session = AVCaptureSession()
     
@@ -105,18 +107,35 @@ class CardBillViewController: UIViewController,UICollectionViewDelegate,UICollec
            
     }
     
+    
+    //// create temporary bill
+   
+   
     func createTemporaryBill(){
-    let database = Firestore.firestore()
+         let database = Firestore.firestore()
          let auth = Auth.auth().currentUser?.uid
-         let billID = self.generateRandomStirng()
-         
+         billID = self.generateRandomStirng()
+         self.timestamp = Date().timeIntervalSince1970
+         let lasstime = Date(timeIntervalSince1970: self.timestamp)
+         let formatter =  DateFormatter()
+         formatter.dateFormat = "dd. MMM yyyy H:mm:ss"
+         let createdAt = formatter.string(from: lasstime)
+        
          database.collection("Store").document(storeID).collection("bills").document(billID).setData([
                               "BillID": billID,
-                              "CustomerID": auth
+                              "CustomerID": auth,
+                              "OrderNo":"",
+                              "QrCodeID":QrCodeId,
+                              "CreateAt":createdAt
+            
                              
                               
                           ])
     }
+    
+  
+    
+   
                     
    
 
@@ -188,6 +207,8 @@ class CardBillViewController: UIViewController,UICollectionViewDelegate,UICollec
             vc.getfoodName = FoodStore.foodName ?? "null"
             vc.getfoodCoin = FoodStore.foodCoin ?? "null"
             vc.getfoodPrice = FoodStore.foodPrice ?? "null"
+            vc.billID = billID
+            vc.storeID = storeID
             
       
             
@@ -387,123 +408,27 @@ class CardBillViewController: UIViewController,UICollectionViewDelegate,UICollec
                          }
                      }
           }
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
     
     
     
-      /////// Query Detai food store /////////////////////////////////////////////////////////////////
-//
-//        var  foodStoreClassArr = [foodStoreClass]()
-//
-//    func readDataFoodsStore(_ FoodStoreID:String,_ TypeName:String) {
-//            let colRef = db.collection("Foods").document(FoodStoreID).collection("FoodsID")
-//                   colRef.whereField("FoodType", isEqualTo: TypeName).getDocuments() { (querySnapshot, err) in
-//                       if err != nil {
-//                           print("error")
-//
-//                       }
-//                       else {
-//
-//                           self.foodStoreClassArr.removeAll()
-//                           for doc in querySnapshot!.documents {
-//                            print("\(doc.documentID) => \(doc.data())")
-//                                let FoodID = doc.get("FoodID") as? String
-//                                let FoodName = doc.get("FoodName") as? String
-//                                let FoodImage = doc.get("FoodImage") as? String
-//                                let FoodPrice = doc.get("FoodPrice") as? Int
-//                                let FoodCoin = doc.get("GetCoin") as? Int
-//                                let FoodQokkyCoin = doc.get("GetQokkyCoin") as? String
-//
-//
-//
-//
-//
-//
-//                            let Data = foodStoreClass(foodName: FoodName, foodPrice: String(FoodPrice!), foodCoin: String(FoodCoin!), foodQokkyCoin: FoodQokkyCoin, foodImage: FoodImage)
-//                            self.foodStoreClassArr.insert(Data, at: 0) //sort Data มากไปน้อย
-//
-//
-//
-//
-//
-//
-//
-//                            self.menuTableView.reloadData()
-//
-//                           }
-//
-//
-//                       }
-//                   }
-//        }
-//
-//
-//    /////// Query Size  food store /////////////////////////////////////////////////////////////////
-//
-//    var sizeArr:[ String] = ["ปกติ"]
-//    var x = 0
-//    var  sizeClassArr = [sizeClass]()
-//
-//    func readSizeFoodsStore(_ FoodStoreID:String,_ TypeName:String) {
-//
-//            let colRef = db.collection("Foods").document(FoodStoreID).collection("FoodsID")
-//                   colRef.whereField("FoodType", isEqualTo: TypeName).getDocuments() { (querySnapshot, err) in
-//                       if err != nil {
-//                           print("error")
-//
-//                       }
-//                       else {
-//
-//                           self.sizeClassArr.removeAll()
-//                           for doc in querySnapshot!.documents {
-//                            print("\(doc.documentID) => \(doc.data())")
-//                                let FoodSize = doc.get("Size") as? String
-//
-//                            self.sizeArr[self.x] = FoodSize!
-//                            self.x += 1
-//
-//
-//
-//
-//
-//
-//                            let Data = sizeClass(sizeName: FoodSize)
-//                           self.sizeClassArr.insert(Data, at: 0) //sort Data มากไปน้อย
-////
-//                            let alert = UIAlertController(title: "food", message: String(self.x), preferredStyle: .alert)
-//                                                                                       alert.addAction(UIAlertAction(title: "Retake", style: .default, handler: nil))
-//                                                                                                           alert.addAction(UIAlertAction(title: "Copy", style: .default, handler: { (nil) in
-//                                                                                                            UIPasteboard.general.string = String(self.x)
-//
-//                                                                                                           }))
-//                                                                                  self.present(alert, animated: true, completion: nil)
-//
-//                                                      self.menuTableView.reloadData()
-//
-//
-//
-//
-//
-//                           }
-//
-//
-//                       }
-//                   }
-//        }
+    
     ///////Open Scan Qrcode page //////////////////////////////////////////////
+     /// close bill ////////////////////////////
+    /// delete temporary bill
     
     @IBAction func closeClicked(_ sender:Any){
+        let database = Firestore.firestore()
+        let auth = Auth.auth().currentUser?.uid
+        database.collection("Store").document(storeID).collection("bills").document(billID).delete()
+        
         let vc = storyboard?.instantiateViewController(withIdentifier: "QrScanViewController") as! QrScanViewController
         navigationController?.pushViewController(vc, animated: true)
     }
+    
+    
+    
+    
     
     
     ////// generateRandomStirng

@@ -2967,6 +2967,7 @@
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <size key="customSize" width="83" height="88"/>
                                                     <connections>
+                                                        <outlet property="bgImage" destination="DBa-ws-pt1" id="839-Ha-MPf"/>
                                                         <outlet property="sizeDetailLabel" destination="lPt-P0-jKP" id="04k-lV-gg8"/>
                                                         <outlet property="sizePriceLabel" destination="0Rc-rm-4tP" id="Ne0-tp-8At"/>
                                                     </connections>

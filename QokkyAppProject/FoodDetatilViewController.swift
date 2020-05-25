@@ -35,7 +35,7 @@ class FoodDetatilViewController: UIViewController,UITableViewDelegate,UITableVie
     @IBOutlet weak var foodMenuCount:UILabel!
 
     var getQrCodeID = ""
-    var getStoreID  = ""
+    var getStoreID  = "" //  key store in collections foods
     var getfoodID = ""
     var getfoodImage = ""
     var getfoodName = ""
@@ -43,8 +43,15 @@ class FoodDetatilViewController: UIViewController,UITableViewDelegate,UITableVie
     var getfoodPrice = ""
     var getStoreName = ""
     var getTableNo = ""
-   
     
+    var billID = ""
+    var storeID = "" // key store in collections store
+    
+    var sizeID = ""
+    var sizeIDIsSelected = ""
+   
+   
+    var timestamp:Double! //get time now
     var video = AVCaptureVideoPreviewLayer()
     //Creating session
     let session = AVCaptureSession()
@@ -97,13 +104,13 @@ class FoodDetatilViewController: UIViewController,UITableViewDelegate,UITableVie
         
                     setDataStore()
         
-        let alert = UIAlertController(title: self.getStoreID, message: self.getfoodID, preferredStyle: .alert)
-                                                                                                                      alert.addAction(UIAlertAction(title: "Retake", style: .default, handler: nil))
-                                                                                                                                          alert.addAction(UIAlertAction(title: "Copy", style: .default, handler: { (nil) in
-                                                                                                                                           UIPasteboard.general.string = self.getStoreID
-        
-                                                                                                                                          }))
-                                                                                                                 self.present(alert, animated: true, completion: nil)
+//        let alert = UIAlertController(title: self.getStoreID, message: self.getfoodID, preferredStyle: .alert)
+//                                                                                                                      alert.addAction(UIAlertAction(title: "Retake", style: .default, handler: nil))
+//                                                                                                                                          alert.addAction(UIAlertAction(title: "Copy", style: .default, handler: { (nil) in
+//                                                                                                                                           UIPasteboard.general.string = self.getStoreID
+//
+//                                                                                                                                          }))
+//                                                                                                                 self.present(alert, animated: true, completion: nil)
         if(self.getStoreID != "" && self.getfoodID != ""){
             readDataSizeFood(self.getStoreID,self.getfoodID)
             readDataAdjunctFood(self.getStoreID,self.getfoodID)
@@ -162,22 +169,18 @@ class FoodDetatilViewController: UIViewController,UITableViewDelegate,UITableVie
                                    
                                   
                                     let sizeDetail = doc.get("SizeDetail") as? String
+                                
+                                    
+                                    self.sizeID = doc.get("SizeID") as? String ?? ""
                                   
                                     let sizePrice = doc.get("SizePrice") as? Int
 
 
 
 
-//                                let alert = UIAlertController(title: sizeDetail, message: String(sizePrice!), preferredStyle: .alert)
-//                                                                                                              alert.addAction(UIAlertAction(title: "Retake", style: .default, handler: nil))
-//                                                                                                                                  alert.addAction(UIAlertAction(title: "Copy", style: .default, handler: { (nil) in
-//                                                                                                                                   UIPasteboard.general.string = String(sizePrice!)
-//
-//                                                                                                                                  }))
-//                                                                                                         self.present(alert, animated: true, completion: nil)
 
                                 if(sizePrice != nil){
-                                let Data = sizeDetailClass(sizeDatail: sizeDetail, sizePrice: String(sizePrice!))
+                                    let Data = sizeDetailClass(sizeDatail: sizeDetail, sizePrice: String(sizePrice!),sizeID: self.sizeID)
                                  self.sizeClassArr.insert(Data, at: 0) //sort Data มากไปน้อย
 
                                   self.sizeCollectionView.reloadData()
@@ -215,16 +218,6 @@ class FoodDetatilViewController: UIViewController,UITableViewDelegate,UITableVie
 
 
 
-//
-//                                    let alert = UIAlertController(title: String(adjunctPrice!), message: adjunctDetail, preferredStyle: .alert)
-//                                                                                                                  alert.addAction(UIAlertAction(title: "Retake", style: .default, handler: nil))
-//                                                                                                                                      alert.addAction(UIAlertAction(title: "Copy", style: .default, handler: { (nil) in
-//                                                                                                                                       UIPasteboard.general.string = String(adjunctPrice!)
-//
-//                                                                                                                                      }))
-//                                                                                                             self.present(alert, animated: true, completion: nil)
-////
-//
                                     if(adjunctPrice != nil){
                                     let Data = adjunctDetailClass(adjunctDatail: adjunctDetail, adjunctPrice: String(adjunctPrice!))
                                      self.adjunctClassArr.insert(Data, at: 0) //sort Data มากไปน้อย
@@ -296,6 +289,10 @@ class FoodDetatilViewController: UIViewController,UITableViewDelegate,UITableVie
             return cell
         }
        }
+    
+    
+    
+   
 
 //    override func updateViewConstraints() {
 //        tableHeightConstraint.constant = adjuncttableView.contentSize.height
@@ -330,16 +327,19 @@ class FoodDetatilViewController: UIViewController,UITableViewDelegate,UITableVie
         if(sizeDetailClass.sizePrice != nil){
         cell.sizePriceLabel.text = "$\(sizeDetailClass.sizePrice!)"
         }
-//
-//        let alert = UIAlertController(title: sizeDetailClass.sizePrice, message: sizeDetailClass.sizeDatail, preferredStyle: .alert)
-//                                                                                      alert.addAction(UIAlertAction(title: "Retake", style: .default, handler: nil))
-//                                                                                                          alert.addAction(UIAlertAction(title: "Copy", style: .default, handler: { (nil) in
-//                                                                                                           UIPasteboard.general.string = sizeDetailClass.sizeDatail
-//
-//                                                                                                          }))
-//                                                                                 self.present(alert, animated: true, completion: nil)
+
             return cell
          
+        
+    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "sizeCollectionViewCell", for: indexPath) as! sizeCollectionViewCell
+        
+         let sizeDetailClass:sizeDetailClass
+         sizeDetailClass = sizeClassArr[indexPath.row]
+        self.sizeIDIsSelected = sizeDetailClass.sizeID!
+        cell.bgImage.image = UIImage(named: "Group 386")
+       
         
     }
         
@@ -358,6 +358,9 @@ class FoodDetatilViewController: UIViewController,UITableViewDelegate,UITableVie
     @IBAction func backButtonPage(_ sender:Any){
         let vc = storyboard?.instantiateViewController(withIdentifier: "CardBillViewController") as! CardBillViewController
         vc.QrCodeId = self.getQrCodeID
+        vc.foodStoreID = self.getStoreID
+        vc.billID = billID
+        vc.storeID = storeID
         navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -365,6 +368,84 @@ class FoodDetatilViewController: UIViewController,UITableViewDelegate,UITableVie
     ///add menu in bill///////////////////////////////
     
     @IBAction func addOrderToBill(_ sender:Any){
+      
+        self.timestamp = Date().timeIntervalSince1970
+        let lasstime = Date(timeIntervalSince1970: self.timestamp)
+        let formatter =  DateFormatter()
+        formatter.dateFormat = "dd. MMM yyyy H:mm:ss"
+        let createdAt = formatter.string(from: lasstime)
+        
+        updateFoodOrderToBill(createdAt)
+        
+
+
+        
+//        let vc = storyboard?.instantiateViewController(withIdentifier: "CardBillViewController") as! CardBillViewController
+//              vc.QrCodeId = self.getQrCodeID
+//              vc.billID = billID
+//              vc.storeID = getStoreID
+//              navigationController?.pushViewController(vc, animated: true)
+               
+       }
+    
+    
+    //// update bill
+  
+    func updateFoodOrderToBill(_ CreateAt:String){
+        
+        let vc = storyboard?.instantiateViewController(withIdentifier: "CardBillViewController") as! CardBillViewController
+        
+        let database = Firestore.firestore()
+        let foodOrdersID = generateRandomStirng()
+        database.collection("Store").document(storeID).collection("bills").document(billID).collection("foodOrders").document(foodOrdersID).setData([
+            "FoodOrderID": foodOrdersID,
+            "FoodID": getfoodID,
+            "CreateAt":CreateAt,
+            "SizeID":self.sizeIDIsSelected
+            
+            
+        
+        
+        
+        
+        ]){ Err in
+            if let Error = Err{
+                      let alert = UIAlertController(title: "Err", message: "Err", preferredStyle: .alert)
+                                                                                                                                    alert.addAction(UIAlertAction(title: "Retake", style: .default, handler: nil))
+                                                                                                                                                        alert.addAction(UIAlertAction(title: "Copy", style: .default, handler: { (nil) in
+                                                                                                                                                          UIPasteboard.general.string = "Err"
+
+                                                                                                                                                        }))
+                                                                                                                               self.present(alert, animated: true, completion: nil)
+            }else{
+                
+                vc.QrCodeId = self.getQrCodeID
+                vc.foodStoreID = self.getStoreID
+                vc.billID = self.billID
+                vc.storeID = self.storeID
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+        }
+
+        
+        
+        
+        
+    }
+    
+    
+    
+    ////// generateRandomStirng
        
+       func generateRandomStirng() -> String {
+           let letters : NSString = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
+           let len = UInt32(letters.length)
+           var randomString = ""
+           for _ in 0 ..< 8 {
+               let random = arc4random_uniform(len)
+               var nextChar = letters.character(at: Int(random))
+               randomString += NSString(characters: &nextChar, length: 1) as String
+           }
+           return randomString
        }
 }

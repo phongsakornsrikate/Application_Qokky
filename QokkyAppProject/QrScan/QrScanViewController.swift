@@ -180,6 +180,7 @@ class QrScanViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
         let vc = storyboard?.instantiateViewController(withIdentifier: "CardBillViewController") as! CardBillViewController
          vc.QrCodeId = QrcodeID
          vc.storeID = storeID
+        
          vc.key = 1
         
 
