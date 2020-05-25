@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="hL8-dN-qxc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="HXE-UO-Rle">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
@@ -2620,10 +2620,10 @@
             </objects>
             <point key="canvasLocation" x="2008.8" y="8905.9970014992505"/>
         </scene>
-        <!--View Controller-->
+        <!--Bill Confirm View Controller-->
         <scene sceneID="2uL-5c-sjX">
             <objects>
-                <viewController id="wkh-VU-7yT" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BillConfirmViewController" id="wkh-VU-7yT" customClass="BillConfirmViewController" customModule="Qokky" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uR4-QB-m0j">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

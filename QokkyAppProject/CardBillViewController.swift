@@ -35,10 +35,17 @@ class CardBillViewController: UIViewController,UICollectionViewDelegate,UICollec
     var foodStoreID = ""
     var FoodID = ""
     var QrCodeId:String = ""
+    var billID = ""
+    
+    var storeID = ""
+    var key = 0
      
     var video = AVCaptureVideoPreviewLayer()
     //Creating session
     let session = AVCaptureSession()
+    
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -88,6 +95,9 @@ class CardBillViewController: UIViewController,UICollectionViewDelegate,UICollec
             
         
 
+        if(key == 1){
+            createTemporaryBill()
+        }
 
             session.startRunning()
         
@@ -95,6 +105,19 @@ class CardBillViewController: UIViewController,UICollectionViewDelegate,UICollec
            
     }
     
+    func createTemporaryBill(){
+    let database = Firestore.firestore()
+         let auth = Auth.auth().currentUser?.uid
+         let billID = self.generateRandomStirng()
+         
+         database.collection("Store").document(storeID).collection("bills").document(billID).setData([
+                              "BillID": billID,
+                              "CustomerID": auth
+                             
+                              
+                          ])
+    }
+                    
    
 
 //////////////  category CollectionView /////////////////////
@@ -186,9 +209,7 @@ class CardBillViewController: UIViewController,UICollectionViewDelegate,UICollec
     
     
     
-    
-    
-    
+   
     
     
     
@@ -483,5 +504,21 @@ class CardBillViewController: UIViewController,UICollectionViewDelegate,UICollec
         let vc = storyboard?.instantiateViewController(withIdentifier: "QrScanViewController") as! QrScanViewController
         navigationController?.pushViewController(vc, animated: true)
     }
+    
+    
+    ////// generateRandomStirng
+    
+    func generateRandomStirng() -> String {
+        let letters : NSString = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
+        let len = UInt32(letters.length)
+        var randomString = ""
+        for _ in 0 ..< 8 {
+            let random = arc4random_uniform(len)
+            var nextChar = letters.character(at: Int(random))
+            randomString += NSString(characters: &nextChar, length: 1) as String
+        }
+        return randomString
+    }
+    
 }
 

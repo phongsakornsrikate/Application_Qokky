@@ -33,6 +33,7 @@
 		441F85B22406E1D0009F2BFD /* cardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 441F85B02406E1D0009F2BFD /* cardViewController.xib */; };
 		441F85B524096BEB009F2BFD /* notificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441F85B324096BEA009F2BFD /* notificationViewController.swift */; };
 		441F85B624096BEB009F2BFD /* notificationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 441F85B424096BEA009F2BFD /* notificationViewController.xib */; };
+		44364647247A4836004ACD9A /* BillConfirmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44364646247A4836004ACD9A /* BillConfirmViewController.swift */; };
 		4440F49324447CAB00061C39 /* QrScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4440F49224447CAB00061C39 /* QrScanViewController.swift */; };
 		445713652461B6A2001BDC5D /* MyRewardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445713642461B6A2001BDC5D /* MyRewardViewController.swift */; };
 		445713682461B6E7001BDC5D /* MyRewardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445713672461B6E7001BDC5D /* MyRewardTableViewCell.swift */; };
@@ -137,6 +138,7 @@
 		441F85B02406E1D0009F2BFD /* cardViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = cardViewController.xib; sourceTree = "<group>"; };
 		441F85B324096BEA009F2BFD /* notificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = notificationViewController.swift; sourceTree = "<group>"; };
 		441F85B424096BEA009F2BFD /* notificationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = notificationViewController.xib; sourceTree = "<group>"; };
+		44364646247A4836004ACD9A /* BillConfirmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillConfirmViewController.swift; sourceTree = "<group>"; };
 		4440F49224447CAB00061C39 /* QrScanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrScanViewController.swift; sourceTree = "<group>"; };
 		445713642461B6A2001BDC5D /* MyRewardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRewardViewController.swift; sourceTree = "<group>"; };
 		445713672461B6E7001BDC5D /* MyRewardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRewardTableViewCell.swift; sourceTree = "<group>"; };
@@ -250,6 +252,7 @@
 				44E37107240FB590000732BD /* RewardDetail */,
 				44F809CF240CDFCA0096C8A8 /* Store */,
 				44F809BD240A7FE90096C8A8 /* Search */,
+				44364648247A484F004ACD9A /* BillConfirm */,
 				44113FE324499B15000672CB /* Bill */,
 				44571379246D3F92001BDC5D /* FoodDetail */,
 				44113FEC244C99F1000672CB /* BillSummary */,
@@ -327,6 +330,15 @@
 				4402226B23D99DC400FCC5D6 /* LoginViewController.swift */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		44364648247A484F004ACD9A /* BillConfirm */ = {
+			isa = PBXGroup;
+			children = (
+				44364646247A4836004ACD9A /* BillConfirmViewController.swift */,
+			);
+			name = BillConfirm;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		4440F49424447CB200061C39 /* QrScan */ = {
@@ -738,6 +750,7 @@
 				441F85AC2406C33E009F2BFD /* allStoreCollectionViewCell.swift in Sources */,
 				441F85A22406B66C009F2BFD /* categoryCollectionViewCell.swift in Sources */,
 				441F85B524096BEB009F2BFD /* notificationViewController.swift in Sources */,
+				44364647247A4836004ACD9A /* BillConfirmViewController.swift in Sources */,
 				44F809D5240D04500096C8A8 /* HotRewardStoreCollectionViewCell.swift in Sources */,
 				441F85A024067454009F2BFD /* hotAreaCollectionViewCell.swift in Sources */,
 				44E3710F2412A83C000732BD /* CouponExchangeViewController.swift in Sources */,
