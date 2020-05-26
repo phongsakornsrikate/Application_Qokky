@@ -12,10 +12,12 @@ class adjunctTableViewCell: UITableViewCell {
     @IBOutlet weak var adjunctDetailLabel:UILabel!
     @IBOutlet weak var adjunctPriceLabel:UILabel!
     @IBOutlet weak var adjunctCount:UILabel!
-    
+    @IBOutlet weak var bgImage:UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+       
     }
 
     

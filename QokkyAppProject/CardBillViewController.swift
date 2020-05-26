@@ -422,9 +422,20 @@ class CardBillViewController: UIViewController,UICollectionViewDelegate,UICollec
         let auth = Auth.auth().currentUser?.uid
         database.collection("Store").document(storeID).collection("bills").document(billID).delete()
         
+        
         let vc = storyboard?.instantiateViewController(withIdentifier: "QrScanViewController") as! QrScanViewController
         navigationController?.pushViewController(vc, animated: true)
     }
+    
+    ///// Go to bill summary page //////////////////////
+      @IBAction func nextButton(_ sender:Any){
+          let vc = storyboard?.instantiateViewController(withIdentifier: "CardBillSummaryViewController") as! CardBillSummaryViewController
+          vc.getQrCodeID = self.QrCodeId
+          vc.getStoreID = self.foodStoreID
+          vc.billID = billID
+          vc.storeID = storeID
+          navigationController?.pushViewController(vc, animated: true)
+      }
     
     
     

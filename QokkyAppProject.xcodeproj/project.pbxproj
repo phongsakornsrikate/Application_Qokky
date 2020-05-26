@@ -34,6 +34,8 @@
 		441F85B524096BEB009F2BFD /* notificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441F85B324096BEA009F2BFD /* notificationViewController.swift */; };
 		441F85B624096BEB009F2BFD /* notificationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 441F85B424096BEA009F2BFD /* notificationViewController.xib */; };
 		44364647247A4836004ACD9A /* BillConfirmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44364646247A4836004ACD9A /* BillConfirmViewController.swift */; };
+		4436464A247D483A004ACD9A /* MenuSummaryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44364649247D4838004ACD9A /* MenuSummaryTableViewCell.swift */; };
+		4436464C247D4CD8004ACD9A /* mainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4436464B247D4CD8004ACD9A /* mainTableViewCell.swift */; };
 		4440F49324447CAB00061C39 /* QrScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4440F49224447CAB00061C39 /* QrScanViewController.swift */; };
 		445713652461B6A2001BDC5D /* MyRewardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445713642461B6A2001BDC5D /* MyRewardViewController.swift */; };
 		445713682461B6E7001BDC5D /* MyRewardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445713672461B6E7001BDC5D /* MyRewardTableViewCell.swift */; };
@@ -139,6 +141,8 @@
 		441F85B324096BEA009F2BFD /* notificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = notificationViewController.swift; sourceTree = "<group>"; };
 		441F85B424096BEA009F2BFD /* notificationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = notificationViewController.xib; sourceTree = "<group>"; };
 		44364646247A4836004ACD9A /* BillConfirmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillConfirmViewController.swift; sourceTree = "<group>"; };
+		44364649247D4838004ACD9A /* MenuSummaryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuSummaryTableViewCell.swift; sourceTree = "<group>"; };
+		4436464B247D4CD8004ACD9A /* mainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mainTableViewCell.swift; sourceTree = "<group>"; };
 		4440F49224447CAB00061C39 /* QrScanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrScanViewController.swift; sourceTree = "<group>"; };
 		445713642461B6A2001BDC5D /* MyRewardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRewardViewController.swift; sourceTree = "<group>"; };
 		445713672461B6E7001BDC5D /* MyRewardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRewardTableViewCell.swift; sourceTree = "<group>"; };
@@ -336,6 +340,8 @@
 			isa = PBXGroup;
 			children = (
 				44364646247A4836004ACD9A /* BillConfirmViewController.swift */,
+				44364649247D4838004ACD9A /* MenuSummaryTableViewCell.swift */,
+				4436464B247D4CD8004ACD9A /* mainTableViewCell.swift */,
 			);
 			name = BillConfirm;
 			path = ..;
@@ -755,6 +761,7 @@
 				441F85A024067454009F2BFD /* hotAreaCollectionViewCell.swift in Sources */,
 				44E3710F2412A83C000732BD /* CouponExchangeViewController.swift in Sources */,
 				44F809CA240AC4370096C8A8 /* AllRewardTableViewCell.swift in Sources */,
+				4436464A247D483A004ACD9A /* MenuSummaryTableViewCell.swift in Sources */,
 				4402226E23D99DDF00FCC5D6 /* HomeViewController.swift in Sources */,
 				44113FE7244AF3E8000672CB /* categoryBillPageCollectionViewCell.swift in Sources */,
 				441F859624052F04009F2BFD /* HomeTableViewCell.swift in Sources */,
@@ -789,6 +796,7 @@
 				4402223C23D761C800FCC5D6 /* SceneDelegate.swift in Sources */,
 				44F809BF240A81E90096C8A8 /* SearchTableViewCell.swift in Sources */,
 				4457137F246D509C001BDC5D /* adjunctTableViewCell.swift in Sources */,
+				4436464C247D4CD8004ACD9A /* mainTableViewCell.swift in Sources */,
 				44571376246AF7F4001BDC5D /* foodStoreClass.swift in Sources */,
 				44F809CE240CDFBD0096C8A8 /* StoreMainViewController.swift in Sources */,
 				44113FE9244B4863000672CB /* menuTableViewCell.swift in Sources */,

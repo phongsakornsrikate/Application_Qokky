@@ -282,6 +282,21 @@ class FoodDetatilViewController: UIViewController,UITableViewDelegate,UITableVie
             if(adjunctDetailClass.adjunctPrice != nil){
             cell.adjunctPriceLabel.text = "$\(adjunctDetailClass.adjunctPrice!)"
             }
+            
+//            let Count = Int(cell.adjunctCount.text ?? "0") ?? 0
+//                   if(Count > 0){
+//                                 cell = tableView.cellForRow(at: indexPath) as! adjunctTableViewCell
+//                                    cell.bgImage.image = UIImage(named: "Group 386")
+//                                  //  return adjunctCell
+//                   //  return cell
+//
+//                    }else{
+//                                  cell = tableView.cellForRow(at: indexPath) as! adjunctTableViewCell
+//                                    cell.bgImage.image = UIImage(named: "Group 385")
+//                                                    //  return adjunctCell
+//                             }
+//            
+          
             return cell
         }
         else{
@@ -332,13 +347,21 @@ class FoodDetatilViewController: UIViewController,UITableViewDelegate,UITableVie
          
         
     }
+    
+    
+    var selectedIndexPath : IndexPath? //declare this
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "sizeCollectionViewCell", for: indexPath) as! sizeCollectionViewCell
+       // let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "sizeCollectionViewCell", for: indexPath) as! sizeCollectionViewCell
         
          let sizeDetailClass:sizeDetailClass
          sizeDetailClass = sizeClassArr[indexPath.row]
         self.sizeIDIsSelected = sizeDetailClass.sizeID!
-        cell.bgImage.image = UIImage(named: "Group 386")
+     
+        let cell = collectionView.cellForItem(at: indexPath) as! sizeCollectionViewCell
+                // let test = cell.bgImage.restorationIdentifier!
+       
+                 cell.bgImage.image = UIImage(named: "Group 386")
        
         
     }
@@ -379,12 +402,7 @@ class FoodDetatilViewController: UIViewController,UITableViewDelegate,UITableVie
         
 
 
-        
-//        let vc = storyboard?.instantiateViewController(withIdentifier: "CardBillViewController") as! CardBillViewController
-//              vc.QrCodeId = self.getQrCodeID
-//              vc.billID = billID
-//              vc.storeID = getStoreID
-//              navigationController?.pushViewController(vc, animated: true)
+
                
        }
     
@@ -432,6 +450,44 @@ class FoodDetatilViewController: UIViewController,UITableViewDelegate,UITableVie
         
         
     }
+    
+    
+    
+    
+    ////// calculate food order ////////////////////////////////////////////////
+    
+    var sizePriceIsSelected = 0
+    var adjunctPriceIsSelected = 0
+    func calculateFoodOrder(){
+        
+    }
+    
+  
+    func querySizePrice(){
+        db.collection("Foods").document(getStoreID).collection("FoodsID").document(getfoodID).collection("size").document(sizeIDIsSelected).addSnapshotListener { documentSnapshot, error in
+                     
+                     guard let document = documentSnapshot else {
+                         print("Error fetching document: \(error!)")
+                         return
+                     }
+                     let data = document.data()
+                    
+                     print("Current data: \(data)")
+                    
+                     self.sizePriceIsSelected = data?["SizePrice"] as? Int ?? 0
+               
+
+                 
+                 
+                 
+                
+                   
+                 }
+    }
+    
+    
+    
+    
     
     
     
