@@ -27,6 +27,7 @@ class CardBillSummaryViewController: UIViewController,UITableViewDelegate,UITabl
     @IBOutlet weak var addCouponLabel:UILabel!
     @IBOutlet weak var bgAddCoupon:UIImageView!
     
+    
       var video = AVCaptureVideoPreviewLayer()
       var timestamp:Double! //get time now
       //Creating session
@@ -85,6 +86,7 @@ class CardBillSummaryViewController: UIViewController,UITableViewDelegate,UITabl
                 self.view.bringSubviewToFront(bgAdjunctView)
                 self.view.bringSubviewToFront(adjunctDetail)
                 self.view.bringSubviewToFront(billSummaryTableView)
+               
                 session.startRunning()
             
     }

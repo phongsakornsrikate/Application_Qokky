@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="TcP-54-OdL">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Vny-nQ-45f">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
@@ -1101,9 +1101,14 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <view key="tableHeaderView" contentMode="scaleToFill" id="LOn-Jp-8h3">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="1521"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="StoreMainTableViewCell" rowHeight="1407" id="LCn-14-Cny" customClass="StoreMainTableViewCell" customModule="Qokky" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="1407"/>
+                                        <rect key="frame" x="0.0" y="1549" width="375" height="1407"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="LCn-14-Cny" id="ynR-Nd-3RY">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="1407"/>
@@ -1123,7 +1128,7 @@
                                                         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="FrontImageCollectionViewCell" id="qr8-sD-w6H" customClass="FrontImageCollectionViewCell" customModule="Qokky" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="-3.5" width="375" height="294"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                            <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="IwJ-RC-Tj8">
+                                                            <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" id="IwJ-RC-Tj8">
                                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="294"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
@@ -1262,7 +1267,7 @@
                                                                 <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HotRewardStoreCollectionViewCell" id="C1l-wb-aH5" customClass="HotRewardStoreCollectionViewCell" customModule="Qokky" customModuleProvider="target">
                                                                     <rect key="frame" x="15" y="3.5" width="240" height="143"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                    <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="s8q-VF-Sji">
+                                                                    <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" id="s8q-VF-Sji">
                                                                         <rect key="frame" x="0.0" y="0.0" width="240" height="143"/>
                                                                         <autoresizingMask key="autoresizingMask"/>
                                                                         <subviews>
@@ -1313,7 +1318,7 @@
                                                                 <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="RewardStoreCollectionViewCell" id="cNT-8k-KQr" customClass="RewardStoreCollectionViewCell" customModule="Qokky" customModuleProvider="target">
                                                                     <rect key="frame" x="0.0" y="0.0" width="335" height="149"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                    <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="hbF-ZZ-Kv9">
+                                                                    <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" id="hbF-ZZ-Kv9">
                                                                         <rect key="frame" x="0.0" y="0.0" width="335" height="149"/>
                                                                         <autoresizingMask key="autoresizingMask"/>
                                                                         <subviews>
@@ -3665,6 +3670,11 @@
                                     <outlet property="delegate" destination="TcP-54-OdL" id="LFr-cQ-YER"/>
                                 </connections>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iHJ-eX-aUv">
+                                <rect key="frame" x="267" y="565" width="83" height="85"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="iconAddBill"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="gzE-e0-Tz4"/>
@@ -3713,6 +3723,7 @@
         <image name="coin" width="256" height="256"/>
         <image name="gps" width="256" height="256"/>
         <image name="homeBtn" width="13" height="11.5"/>
+        <image name="iconAddBill" width="83" height="85"/>
         <image name="imageEx" width="97" height="84"/>
         <image name="imageSearch" width="425" height="283.5"/>
         <image name="logoBtn" width="13.5" height="13.5"/>
