@@ -9,5 +9,6 @@
 import UIKit
 
 class HotRewardStoreCollectionViewCell: UICollectionViewCell {
-    
+      @IBOutlet weak var  rewardImageView:UIImageView!
+      @IBOutlet weak var  useCoinLabel:UILabel!
 }

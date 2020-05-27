@@ -9,5 +9,8 @@
 import UIKit
 
 class RewardStoreCollectionViewCell: UICollectionViewCell {
-    
+    @IBOutlet weak var  rewardImageView:UIImageView!
+    @IBOutlet weak var  useCoinLabel:UILabel!
+    @IBOutlet weak var  rewardTitleLabel:UILabel!
+    @IBOutlet weak var  rewardDetailLabel:UILabel!
 }

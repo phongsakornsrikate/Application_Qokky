@@ -36,6 +36,8 @@
 		44364647247A4836004ACD9A /* BillConfirmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44364646247A4836004ACD9A /* BillConfirmViewController.swift */; };
 		4436464A247D483A004ACD9A /* MenuSummaryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44364649247D4838004ACD9A /* MenuSummaryTableViewCell.swift */; };
 		4436464C247D4CD8004ACD9A /* mainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4436464B247D4CD8004ACD9A /* mainTableViewCell.swift */; };
+		4436464E247EBB9D004ACD9A /* SpecialRewardClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4436464D247EBB9B004ACD9A /* SpecialRewardClass.swift */; };
+		44364652247EC4CB004ACD9A /* NormalRewardClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44364651247EC4CB004ACD9A /* NormalRewardClass.swift */; };
 		4440F49324447CAB00061C39 /* QrScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4440F49224447CAB00061C39 /* QrScanViewController.swift */; };
 		445713652461B6A2001BDC5D /* MyRewardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445713642461B6A2001BDC5D /* MyRewardViewController.swift */; };
 		445713682461B6E7001BDC5D /* MyRewardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445713672461B6E7001BDC5D /* MyRewardTableViewCell.swift */; };
@@ -143,6 +145,8 @@
 		44364646247A4836004ACD9A /* BillConfirmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillConfirmViewController.swift; sourceTree = "<group>"; };
 		44364649247D4838004ACD9A /* MenuSummaryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuSummaryTableViewCell.swift; sourceTree = "<group>"; };
 		4436464B247D4CD8004ACD9A /* mainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mainTableViewCell.swift; sourceTree = "<group>"; };
+		4436464D247EBB9B004ACD9A /* SpecialRewardClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecialRewardClass.swift; sourceTree = "<group>"; };
+		44364651247EC4CB004ACD9A /* NormalRewardClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NormalRewardClass.swift; sourceTree = "<group>"; };
 		4440F49224447CAB00061C39 /* QrScanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrScanViewController.swift; sourceTree = "<group>"; };
 		445713642461B6A2001BDC5D /* MyRewardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRewardViewController.swift; sourceTree = "<group>"; };
 		445713672461B6E7001BDC5D /* MyRewardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRewardTableViewCell.swift; sourceTree = "<group>"; };
@@ -433,12 +437,14 @@
 			isa = PBXGroup;
 			children = (
 				44F809CD240CDFBD0096C8A8 /* StoreMainViewController.swift */,
+				4436464D247EBB9B004ACD9A /* SpecialRewardClass.swift */,
 				44F809D2240CE16C0096C8A8 /* FrontImageCollectionViewCell.swift */,
 				44E37103240D0ACA000732BD /* RewardStoreCollectionViewCell.swift */,
 				44A62CB7241ABC1100C75C6B /* coverImageViewStore.swift */,
 				44F809D4240D04500096C8A8 /* HotRewardStoreCollectionViewCell.swift */,
 				44A62CB5241A792A00C75C6B /* coverImageStoreClass.swift */,
 				44F809D0240CE0BA0096C8A8 /* StoreMainTableViewCell.swift */,
+				44364651247EC4CB004ACD9A /* NormalRewardClass.swift */,
 			);
 			path = Store;
 			sourceTree = "<group>";
@@ -762,9 +768,11 @@
 				44E3710F2412A83C000732BD /* CouponExchangeViewController.swift in Sources */,
 				44F809CA240AC4370096C8A8 /* AllRewardTableViewCell.swift in Sources */,
 				4436464A247D483A004ACD9A /* MenuSummaryTableViewCell.swift in Sources */,
+				4436464E247EBB9D004ACD9A /* SpecialRewardClass.swift in Sources */,
 				4402226E23D99DDF00FCC5D6 /* HomeViewController.swift in Sources */,
 				44113FE7244AF3E8000672CB /* categoryBillPageCollectionViewCell.swift in Sources */,
 				441F859624052F04009F2BFD /* HomeTableViewCell.swift in Sources */,
+				44364652247EC4CB004ACD9A /* NormalRewardClass.swift in Sources */,
 				44F809D3240CE16C0096C8A8 /* FrontImageCollectionViewCell.swift in Sources */,
 				44A62CB8241ABC1100C75C6B /* coverImageViewStore.swift in Sources */,
 				441F85A42406BBA0009F2BFD /* recommendCollectionViewCell.swift in Sources */,
