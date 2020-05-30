@@ -29,7 +29,7 @@ class StoreMainViewController: UIViewController,UITableViewDelegate,UITableViewD
     
    
     
-   
+   var storeID = "6k1aWpqnYyyIJD8Kjc0k"
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -44,11 +44,12 @@ class StoreMainViewController: UIViewController,UITableViewDelegate,UITableViewD
            self.RewardStoreCollectionView.dataSource = self
     
         
-        
-        readDataStore()
-        getCoverImageStore()
-        readSpecailReward()
-        readNormalReward()
+        if(storeID != ""){
+            readDataStore(storeID)
+            getCoverImageStore(storeID)
+            readSpecailReward(storeID)
+            readNormalReward(storeID)
+        }
         addRefreshController()
         
         
@@ -151,14 +152,34 @@ class StoreMainViewController: UIViewController,UITableViewDelegate,UITableViewD
     
     
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+          let vc = storyboard?.instantiateViewController(withIdentifier: "RewardDetailViewController") as! RewardDetailViewController
+            
+        if(collectionView == HotRewardStoreCollectionView){
+            let specialRewardClass:SpecialRewardClass
+            specialRewardClass = SpecialRewardClassArr[indexPath.row]
+            vc.rewardID = specialRewardClass.rewardID ?? ""
+            vc.storyBoardID = "StoreMainViewController"
+            navigationController?.pushViewController(vc, animated: true)
+        }else if(collectionView == RewardStoreCollectionView){
+            let normalRewardClass:NormalRewardClass
+            normalRewardClass = NormalRewardClassArr[indexPath.row]
+            vc.rewardID = normalRewardClass.rewardID ?? ""
+            vc.storyBoardID = "StoreMainViewController"
+            navigationController?.pushViewController(vc, animated: true)
+        }
+                 
+    }
+    
+    
     /////// Query special reward //////////////////////////////////////////////////////////
        
      
         var  SpecialRewardClassArr = [SpecialRewardClass]()
-        func readSpecailReward() {
+    func readSpecailReward(_ StoreID:String) {
 
             let colRef = db.collection("Rewards")
-            colRef.whereField("RewardStatus", isEqualTo: "special").whereField("StoreID", isEqualTo: "6k1aWpqnYyyIJD8Kjc0k").getDocuments() { (querySnapshot, err) in
+            colRef.whereField("RewardStatus", isEqualTo: "special").whereField("StoreID", isEqualTo: StoreID).getDocuments() { (querySnapshot, err) in
                             if err != nil {
                                 print("error")
 
@@ -198,10 +219,10 @@ class StoreMainViewController: UIViewController,UITableViewDelegate,UITableViewD
           
         
            var  NormalRewardClassArr = [NormalRewardClass]()
-           func readNormalReward() {
+           func readNormalReward(_ StoreID:String) {
 
                let colRef = db.collection("Rewards")
-               colRef.whereField("RewardStatus", isEqualTo: "special").whereField("StoreID", isEqualTo: "6k1aWpqnYyyIJD8Kjc0k").getDocuments() { (querySnapshot, err) in
+               colRef.whereField("RewardStatus", isEqualTo: "special").whereField("StoreID", isEqualTo: StoreID).getDocuments() { (querySnapshot, err) in
                                if err != nil {
                                    print("error")
 
@@ -258,8 +279,8 @@ class StoreMainViewController: UIViewController,UITableViewDelegate,UITableViewD
        let db = Firestore.firestore()
       var  coverImageStoreArr = [coverImageStoreClass]()
          
-         func getCoverImageStore() {
-             let colRef = db.collection("Store").document("6k1aWpqnYyyIJD8Kjc0k").collection("coverImage")
+         func getCoverImageStore(_ StoreID:String) {
+             let colRef = db.collection("Store").document(StoreID).collection("coverImage")
             // let query = colRef.whereField("coverImageUrl", isGreaterThan: "")
              colRef.getDocuments() { (querySnapshot, err) in
                  if err != nil {
@@ -345,8 +366,8 @@ class StoreMainViewController: UIViewController,UITableViewDelegate,UITableViewD
     
     
    
-    func readDataStore(){
-        db.collection("Store").document("6k1aWpqnYyyIJD8Kjc0k").addSnapshotListener { documentSnapshot, error in
+    func readDataStore(_ StoreID:String){
+        db.collection("Store").document(StoreID).addSnapshotListener { documentSnapshot, error in
 
             guard let document = documentSnapshot else {
                 print("Error fetching document: \(error!)")

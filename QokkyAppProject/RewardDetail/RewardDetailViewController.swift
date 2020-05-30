@@ -17,10 +17,13 @@ class RewardDetailViewController: UIViewController,UITableViewDelegate,UITableVi
     @IBOutlet weak var  rewardImageView:UIImageView!
     @IBOutlet weak var  useCoinLabel:UILabel!
     @IBOutlet weak var  rewardTitleLabel:UILabel!
-    @IBOutlet weak var  rewardDetailLabel:UITextView!
+    @IBOutlet weak var  rewardDetailTextView:UITextView!
    
     
-    
+    var rewardID = ""
+    var storyBoardID =  ""
+    var storyBoardID_2 =  ""
+    var getStoreID = ""
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -30,9 +33,10 @@ class RewardDetailViewController: UIViewController,UITableViewDelegate,UITableVi
          self.ImageRewardDetailRecommendCollectionView.dataSource = self
         
         
-        readDataStore()
-        readDataCoupon()
-        readRecommendReward()
+        if(rewardID != ""){
+            readDataReward(self.rewardID)
+            readRecommendReward()
+        }
     }
     
 
@@ -87,8 +91,8 @@ class RewardDetailViewController: UIViewController,UITableViewDelegate,UITableVi
     
     ///////// readDataStore
      let db = Firestore.firestore()
-    func readDataStore(){
-        db.collection("Store").document("6k1aWpqnYyyIJD8Kjc0k").addSnapshotListener { documentSnapshot, error in
+    func readDataStore(_ storeID:String){
+        db.collection("Store").document(storeID).addSnapshotListener { documentSnapshot, error in
 
             guard let document = documentSnapshot else {
                 print("Error fetching document: \(error!)")
@@ -117,8 +121,8 @@ class RewardDetailViewController: UIViewController,UITableViewDelegate,UITableVi
     
     ///////// readDataCoupon
       
-       func readDataCoupon(){
-           db.collection("Rewards").document("5HclHjrMnWB8oowhKqQa").addSnapshotListener { documentSnapshot, error in
+    func readDataReward(_ rewardID:String){
+           db.collection("Rewards").document(rewardID).addSnapshotListener { documentSnapshot, error in
 
                guard let document = documentSnapshot else {
                    print("Error fetching document: \(error!)")
@@ -129,10 +133,14 @@ class RewardDetailViewController: UIViewController,UITableViewDelegate,UITableVi
                print("Current data: \(data)")
 
                self.rewardTitleLabel.text = data?["RewardTitle"] as? String ?? ""
-               self.rewardDetailLabel.text = data?["RewardDetail"] as? String ?? ""
+               self.rewardDetailTextView.text = data?["RewardDetail"] as? String ?? ""
                self.useCoinLabel.text = String(data?["UseCoin"] as? Int ?? 0)
-              
-               
+            
+              let StoreID = data?["StoreID"] as? String ?? ""
+            if(StoreID != ""){
+                self.readDataStore(StoreID)
+                self.getStoreID = StoreID
+            }
                
                 if(data?["RewardImageUrl"] as? String != nil){
                    let RewardImageUrl = data?["RewardImageUrl"] as? String
@@ -190,7 +198,46 @@ class RewardDetailViewController: UIViewController,UITableViewDelegate,UITableVi
                 }
        
        
-       
+        @IBAction func exchangeRewardButton(_ sender:Any){
+            let vc = storyboard?.instantiateViewController(withIdentifier: "CouponExchangeViewController") as! CouponExchangeViewController
+            vc.rewardID = self.rewardID
+            vc.storyBoardID = "RewardDetailViewController"
+            navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    
+    
+    @IBAction func back(_ sender:Any){
+        if(storyBoardID == "StoreMainViewController"){
+            let vc = storyboard?.instantiateViewController(withIdentifier: "StoreMainViewController") as! StoreMainViewController
+                       vc.storeID = getStoreID
+                     //  vc.storyBoardID = "RewardDetailViewController"
+                       navigationController?.pushViewController(vc, animated: true)
+        }else if(storyBoardID == "StoreMainViewController" && storyBoardID_2 == "CouponExchangeViewController"){
+            let vc = storyboard?.instantiateViewController(withIdentifier: "StoreMainViewController") as! StoreMainViewController
+                       vc.storeID = getStoreID
+                     //  vc.storyBoardID = "RewardDetailViewController"
+                       navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
+    @IBAction func goToStore(_ sender:Any){
+           if(storyBoardID == "StoreMainViewController"){
+                 let vc = storyboard?.instantiateViewController(withIdentifier: "StoreMainViewController") as! StoreMainViewController
+                            vc.storeID = getStoreID
+                          //  vc.storyBoardID = "RewardDetailViewController"
+                            navigationController?.pushViewController(vc, animated: true)
+             }else if(storyBoardID == "StoreMainViewController" && storyBoardID_2 == "CouponExchangeViewController"){
+                 let vc = storyboard?.instantiateViewController(withIdentifier: "StoreMainViewController") as! StoreMainViewController
+                            vc.storeID = getStoreID
+                          //  vc.storyBoardID = "RewardDetailViewController"
+                            navigationController?.pushViewController(vc, animated: true)
+             }
+    }
+    
 
 
 }
+
+
+
