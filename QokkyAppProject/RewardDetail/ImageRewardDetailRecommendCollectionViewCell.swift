@@ -9,5 +9,5 @@
 import UIKit
 
 class ImageRewardDetailRecommendCollectionViewCell: UICollectionViewCell {
-    
+     @IBOutlet weak var  rewardRecommendImageView:UIImageView!
 }

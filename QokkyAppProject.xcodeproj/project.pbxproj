@@ -38,6 +38,7 @@
 		4436464C247D4CD8004ACD9A /* mainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4436464B247D4CD8004ACD9A /* mainTableViewCell.swift */; };
 		4436464E247EBB9D004ACD9A /* SpecialRewardClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4436464D247EBB9B004ACD9A /* SpecialRewardClass.swift */; };
 		44364652247EC4CB004ACD9A /* NormalRewardClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44364651247EC4CB004ACD9A /* NormalRewardClass.swift */; };
+		443646582482B22B004ACD9A /* rewardRecommendClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443646572482B22B004ACD9A /* rewardRecommendClass.swift */; };
 		4440F49324447CAB00061C39 /* QrScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4440F49224447CAB00061C39 /* QrScanViewController.swift */; };
 		445713652461B6A2001BDC5D /* MyRewardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445713642461B6A2001BDC5D /* MyRewardViewController.swift */; };
 		445713682461B6E7001BDC5D /* MyRewardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445713672461B6E7001BDC5D /* MyRewardTableViewCell.swift */; };
@@ -147,6 +148,7 @@
 		4436464B247D4CD8004ACD9A /* mainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mainTableViewCell.swift; sourceTree = "<group>"; };
 		4436464D247EBB9B004ACD9A /* SpecialRewardClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecialRewardClass.swift; sourceTree = "<group>"; };
 		44364651247EC4CB004ACD9A /* NormalRewardClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NormalRewardClass.swift; sourceTree = "<group>"; };
+		443646572482B22B004ACD9A /* rewardRecommendClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = rewardRecommendClass.swift; sourceTree = "<group>"; };
 		4440F49224447CAB00061C39 /* QrScanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrScanViewController.swift; sourceTree = "<group>"; };
 		445713642461B6A2001BDC5D /* MyRewardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRewardViewController.swift; sourceTree = "<group>"; };
 		445713672461B6E7001BDC5D /* MyRewardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRewardTableViewCell.swift; sourceTree = "<group>"; };
@@ -386,6 +388,7 @@
 			isa = PBXGroup;
 			children = (
 				44E37105240FB583000732BD /* RewardDetailViewController.swift */,
+				443646572482B22B004ACD9A /* rewardRecommendClass.swift */,
 				44E3710A240FB89A000732BD /* ImageRewardDetailCollectionViewCell.swift */,
 				44E3710C241004B1000732BD /* ImageRewardDetailRecommendCollectionViewCell.swift */,
 				44E37108240FB5C1000732BD /* RewardDetailTableViewCell.swift */,
@@ -777,6 +780,7 @@
 				44A62CB8241ABC1100C75C6B /* coverImageViewStore.swift in Sources */,
 				441F85A42406BBA0009F2BFD /* recommendCollectionViewCell.swift in Sources */,
 				446A5FB124742F0100FC9708 /* sizeDetailClass.swift in Sources */,
+				443646582482B22B004ACD9A /* rewardRecommendClass.swift in Sources */,
 				44113FEE244C9A4D000672CB /* billSummaryTableViewCell.swift in Sources */,
 				44F809D1240CE0BA0096C8A8 /* StoreMainTableViewCell.swift in Sources */,
 				44E37104240D0ACA000732BD /* RewardStoreCollectionViewCell.swift in Sources */,

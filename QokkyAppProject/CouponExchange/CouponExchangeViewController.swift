@@ -7,9 +7,13 @@
 //
 
 import UIKit
+import Firebase
 
 class CouponExchangeViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
     @IBOutlet weak var tableView:UITableView!
+    @IBOutlet weak var nameStore:UILabel!
+    @IBOutlet weak var  logoImageView:UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -33,5 +37,38 @@ class CouponExchangeViewController: UIViewController,UITableViewDelegate,UITable
       override var prefersStatusBarHidden: Bool{
                  return false
              }
+    
+    
+    ///////// readDataStore
+     let db = Firestore.firestore()
+    func readDataStore(){
+        db.collection("Store").document("6k1aWpqnYyyIJD8Kjc0k").addSnapshotListener { documentSnapshot, error in
+
+            guard let document = documentSnapshot else {
+                print("Error fetching document: \(error!)")
+                return
+            }
+            let data = document.data()
+
+            print("Current data: \(data)")
+
+            self.nameStore.text = data?["Name"] as? String ?? "anonymous"
+           
+            
+            
+             if(data?["LogoImageUrl"] as? String != nil){
+                let logoImage = data?["LogoImageUrl"] as? String
+                self.logoImageView.kf.setImage(with:URL(string: logoImage!),placeholder: nil,options: [.transition(.fade(0.7))],progressBlock: nil)
+                self.logoImageView.layer.cornerRadius = self.logoImageView.frame.size.width/2
+                               self.logoImageView.clipsToBounds = true
+            }
+            self.tableView.reloadData()
+
+        }
+
+    }
+
+
+    
 
 }
