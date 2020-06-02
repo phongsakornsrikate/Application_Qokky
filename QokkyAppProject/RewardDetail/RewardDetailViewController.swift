@@ -21,8 +21,9 @@ class RewardDetailViewController: UIViewController,UITableViewDelegate,UITableVi
    
     
     var rewardID = ""
-    var storyBoardID =  ""
-    var storyBoardID_2 =  ""
+    var storyBoardID_1 =  "" // level 1
+    var storyBoardID_2 =  "" // level 2
+    var storyBoardID_3 =  "" // level 3
     var getStoreID = ""
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -201,41 +202,34 @@ class RewardDetailViewController: UIViewController,UITableViewDelegate,UITableVi
         @IBAction func exchangeRewardButton(_ sender:Any){
             let vc = storyboard?.instantiateViewController(withIdentifier: "CouponExchangeViewController") as! CouponExchangeViewController
             vc.rewardID = self.rewardID
-            vc.storyBoardID = "RewardDetailViewController"
+            vc.storyBoardID_1 = "HomeViewController"
+            vc.storyBoardID_2 = "StoreMainViewController"
+          
             navigationController?.pushViewController(vc, animated: true)
     }
     
     
     
     @IBAction func back(_ sender:Any){
-        if(storyBoardID == "StoreMainViewController"){
+        if(storyBoardID_2 == "StoreMainViewController"){
             let vc = storyboard?.instantiateViewController(withIdentifier: "StoreMainViewController") as! StoreMainViewController
                        vc.storeID = getStoreID
-                     //  vc.storyBoardID = "RewardDetailViewController"
-                       navigationController?.pushViewController(vc, animated: true)
-        }else if(storyBoardID == "StoreMainViewController" && storyBoardID_2 == "CouponExchangeViewController"){
-            let vc = storyboard?.instantiateViewController(withIdentifier: "StoreMainViewController") as! StoreMainViewController
-                       vc.storeID = getStoreID
-                     //  vc.storyBoardID = "RewardDetailViewController"
+                       vc.storyBoardID_1 = "HomeViewController"
+                       vc.storyBoardID_2 = "StoreMainViewController"
                        navigationController?.pushViewController(vc, animated: true)
         }
     }
     
     @IBAction func goToStore(_ sender:Any){
-           if(storyBoardID == "StoreMainViewController"){
+           if(storyBoardID_2 == "StoreMainViewController"){
                  let vc = storyboard?.instantiateViewController(withIdentifier: "StoreMainViewController") as! StoreMainViewController
                             vc.storeID = getStoreID
-                          //  vc.storyBoardID = "RewardDetailViewController"
-                            navigationController?.pushViewController(vc, animated: true)
-             }else if(storyBoardID == "StoreMainViewController" && storyBoardID_2 == "CouponExchangeViewController"){
-                 let vc = storyboard?.instantiateViewController(withIdentifier: "StoreMainViewController") as! StoreMainViewController
-                            vc.storeID = getStoreID
-                          //  vc.storyBoardID = "RewardDetailViewController"
+                            vc.storyBoardID_1 = "HomeViewController"
+                        
                             navigationController?.pushViewController(vc, animated: true)
              }
-    }
     
-
+    }
 
 }
 

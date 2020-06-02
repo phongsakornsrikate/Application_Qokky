@@ -28,7 +28,9 @@ class StoreMainViewController: UIViewController,UITableViewDelegate,UITableViewD
     
     
    
-    
+    var storyBoardID_1 =  "" // level 1
+    var storyBoardID_2 =  "" // level 2
+    var storyBoardID_3 =  "" // level 3
    var storeID = "6k1aWpqnYyyIJD8Kjc0k"
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -159,13 +161,15 @@ class StoreMainViewController: UIViewController,UITableViewDelegate,UITableViewD
             let specialRewardClass:SpecialRewardClass
             specialRewardClass = SpecialRewardClassArr[indexPath.row]
             vc.rewardID = specialRewardClass.rewardID ?? ""
-            vc.storyBoardID = "StoreMainViewController"
+            vc.storyBoardID_1 = "HomeViewController"
+            vc.storyBoardID_2 = "StoreMainViewController"
             navigationController?.pushViewController(vc, animated: true)
         }else if(collectionView == RewardStoreCollectionView){
             let normalRewardClass:NormalRewardClass
             normalRewardClass = NormalRewardClassArr[indexPath.row]
             vc.rewardID = normalRewardClass.rewardID ?? ""
-            vc.storyBoardID = "StoreMainViewController"
+            vc.storyBoardID_1 = "HomeViewController"
+            vc.storyBoardID_2 = "StoreMainViewController"
             navigationController?.pushViewController(vc, animated: true)
         }
                  
@@ -411,4 +415,13 @@ class StoreMainViewController: UIViewController,UITableViewDelegate,UITableViewD
           maintableView.reloadData()
       }
    
+    
+    
+    
+       @IBAction func back(_ sender:Any){
+        if(storyBoardID_1 == "HomeViewController"){
+            let vc = storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
+            navigationController?.pushViewController(vc, animated: true)
+        }
+    }
 }

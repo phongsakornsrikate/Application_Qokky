@@ -37,4 +37,13 @@ class MyRewardViewController: UIViewController,UITableViewDelegate,UITableViewDa
     override var prefersStatusBarHidden: Bool{
                return false
            }
+    
+    
+    
+    @IBAction func back(_ sender:Any){
+        
+               let vc = storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
+               navigationController?.pushViewController(vc, animated: true)
+           
+       }
 }

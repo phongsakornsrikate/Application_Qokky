@@ -522,7 +522,20 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     }
     
     
+    @IBAction func goToStore(_ sender:Any){
+    let vc = storyboard?.instantiateViewController(withIdentifier: "StoreMainViewController") as! StoreMainViewController
+        vc.storyBoardID_1 = "HomeViewController"
+                        
+    navigationController?.pushViewController(vc, animated: true)
+    
+}
     
     
-    
+    @IBAction func goToMyReward(_ sender:Any){
+        let vc = storyboard?.instantiateViewController(withIdentifier: "MyRewardViewController") as! MyRewardViewController
+          
+                            
+        navigationController?.pushViewController(vc, animated: true)
+        
+    }
 }

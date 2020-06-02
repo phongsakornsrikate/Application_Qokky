@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Vny-nQ-45f">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="HXE-UO-Rle">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
@@ -488,6 +488,9 @@
                                         <rect key="frame" x="316" y="625" width="25" height="25"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" backgroundImage="myrewardBtn"/>
+                                        <connections>
+                                            <action selector="goToMyReward:" destination="9RO-ZX-4oP" eventType="primaryActionTriggered" id="Kem-yh-QzN"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fjR-ll-wUj">
                                         <rect key="frame" x="11" y="34" width="46" height="45"/>
@@ -495,6 +498,14 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <action selector="slideMenuBtn:" destination="9RO-ZX-4oP" eventType="primaryActionTriggered" id="XlY-c0-evY"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5lC-C8-Hs8">
+                                        <rect key="frame" x="263" y="400" width="121" height="95"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <action selector="goToStore:" destination="9RO-ZX-4oP" eventType="primaryActionTriggered" id="qD0-Qh-U92"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -1076,6 +1087,9 @@
                                 <rect key="frame" x="99" y="582" width="177" height="77"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="BG2"/>
+                                <connections>
+                                    <action selector="exchangeRewardBtn:" destination="YKF-hA-TX7" eventType="primaryActionTriggered" id="InV-gG-7Bv"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="แลกคูปอง" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cuV-cy-zuE">
                                 <rect key="frame" x="130" y="598" width="119" height="39"/>
@@ -1496,6 +1510,9 @@
                                         <rect key="frame" x="8" y="23" width="28" height="25"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="backConverse-1"/>
+                                        <connections>
+                                            <action selector="back:" destination="M1q-8U-Aus" eventType="primaryActionTriggered" id="t9I-3a-rmy"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ร้านค้า" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7zX-BD-hV4">
                                         <rect key="frame" x="44" y="25" width="47" height="21"/>
@@ -2084,6 +2101,9 @@
                                 <rect key="frame" x="8" y="23" width="28" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button" image="backConverse-1"/>
+                                <connections>
+                                    <action selector="back:" destination="mrf-ML-8dv" eventType="primaryActionTriggered" id="NA9-U0-eOb"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.80733972789999997" green="0.80930262799999997" blue="0.82934159039999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -2796,6 +2816,9 @@
                                 <rect key="frame" x="16" y="20" width="28" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button" image="backConverse-1"/>
+                                <connections>
+                                    <action selector="back:" destination="ff0-4g-rYK" eventType="primaryActionTriggered" id="Ln0-QH-z2H"/>
+                                </connections>
                             </button>
                             <view alpha="0.69999999999999996" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="II6-E8-FMD" customClass="DesignableView" customModule="Qokky" customModuleProvider="target">
                                 <rect key="frame" x="215" y="13" width="144" height="39"/>

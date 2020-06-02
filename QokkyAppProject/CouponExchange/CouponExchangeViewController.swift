@@ -21,8 +21,11 @@ class CouponExchangeViewController: UIViewController,UITableViewDelegate,UITable
     
    
     var rewardID = ""
-    var storyBoardID =  ""
-    var storyBoardID_2 =  ""
+    var storyBoardID_1 =  "" // level 1
+    var storyBoardID_2 =  "" // level 2
+    var storyBoardID_3 =  "" // level 3
+   
+    var timestamp:Double! //get time now
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -112,17 +115,55 @@ class CouponExchangeViewController: UIViewController,UITableViewDelegate,UITable
     
     
     @IBAction func back(_ sender:Any){
-        if(storyBoardID == "RewardDetailViewController" && storyBoardID_2 == "StoreMainViewController"){
+        
             let vc = storyboard?.instantiateViewController(withIdentifier: "RewardDetailViewController") as! RewardDetailViewController
                        vc.rewardID = rewardID
-            vc.storyBoardID = "StoreMainViewController"
-                     vc.storyBoardID_2 = "CouponExchangeViewController"
-                       navigationController?.pushViewController(vc, animated: true)
-        }
+           
+                    vc.storyBoardID_1 = "HomeViewController"
+                    vc.storyBoardID_2 = "StoreMainViewController"
+            navigationController?.pushViewController(vc, animated: true)
+        
     }
+    
+    @IBAction func exchangeRewardBtn(_ sender:Any){
+        self.timestamp = Date().timeIntervalSince1970
+             let lasstime = Date(timeIntervalSince1970: self.timestamp)
+             let formatter =  DateFormatter()
+             formatter.dateFormat = "dd. MMM yyyy H:mm:ss"
+             let createdAt = formatter.string(from: lasstime)
+        let auth = Auth.auth().currentUser?.uid
+              let database = Firestore.firestore()
+              let myRewardID = generateRandomStirng()
+        database.collection("Users").document(auth!).collection("myRewards").document(myRewardID).setData([
+                        "MyRewardID":myRewardID,
+                         "BuyAt":createdAt,
+                         "RewardID":self.rewardID
+                         
+                   ])
+        let vc = storyboard?.instantiateViewController(withIdentifier: "MyRewardDetailViewController") as! MyRewardDetailViewController
+        vc.rewardID = rewardID
+       vc.storyBoardID_1 = "HomeViewController"
+       vc.storyBoardID_2 = "StoreMainViewController"
+       vc.storyBoardID_3 = "CouponExchangeViewController"
+                          
+        navigationController?.pushViewController(vc, animated: true)
     
 
 }
 
 
 
+////// generateRandomStirng
+
+func generateRandomStirng() -> String {
+    let letters : NSString = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
+    let len = UInt32(letters.length)
+    var randomString = ""
+    for _ in 0 ..< 8 {
+        let random = arc4random_uniform(len)
+        var nextChar = letters.character(at: Int(random))
+        randomString += NSString(characters: &nextChar, length: 1) as String
+    }
+    return randomString
+}
+}

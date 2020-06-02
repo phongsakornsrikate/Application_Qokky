@@ -20,6 +20,11 @@ class MyRewardDetailViewController: UIViewController,UITableViewDelegate,UITable
        @IBOutlet weak var  rewardAnnotationLabel:UILabel!
        @IBOutlet weak var  codeLabel:UILabel!
        
+    
+    var rewardID = ""
+    var storyBoardID_1 =  "" // level 1
+    var storyBoardID_2 =  "" // level 2
+    var storyBoardID_3 =  "" // level 3
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -54,7 +59,7 @@ class MyRewardDetailViewController: UIViewController,UITableViewDelegate,UITable
     ///////// readDataStore
        let db = Firestore.firestore()
       func readDataStore(){
-          db.collection("Store").document("6k1aWpqnYyyIJD8Kjc0k").addSnapshotListener { documentSnapshot, error in
+          db.collection("Store").document(rewardID).addSnapshotListener { documentSnapshot, error in
 
               guard let document = documentSnapshot else {
                   print("Error fetching document: \(error!)")
@@ -105,4 +110,17 @@ class MyRewardDetailViewController: UIViewController,UITableViewDelegate,UITable
 
             }
       
+    
+    
+    @IBAction func back(_ sender:Any){
+        if(storyBoardID_3 == "CouponExchangeViewController"){
+            let vc = storyboard?.instantiateViewController(withIdentifier: "RewardDetailViewController") as! RewardDetailViewController
+                       vc.rewardID = rewardID
+           
+                    vc.storyBoardID_1 = "HomeViewController"
+                    vc.storyBoardID_2 = "StoreMainViewController"
+            navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
 }
