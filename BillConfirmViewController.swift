@@ -14,6 +14,12 @@ class BillConfirmViewController: UIViewController,UITableViewDelegate,UITableVie
      @IBOutlet weak var mainTableView:UITableView!
      @IBOutlet weak var menuTableView:UITableView!
      
+    
+    
+    var getQrCodeID = ""
+    var getStoreID = ""
+    var billID = ""
+    var storeID = ""
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -54,5 +60,16 @@ class BillConfirmViewController: UIViewController,UITableViewDelegate,UITableVie
             return 0
         }
       }
-
+    
+    
+    @IBAction func addBill(_ sender:Any){
+         
+            let vc = storyboard?.instantiateViewController(withIdentifier: "CardBillViewController") as! CardBillViewController
+             vc.QrCodeId = self.getQrCodeID
+             vc.foodStoreID = self.getStoreID
+             vc.billID = billID
+             vc.storeID = storeID
+             navigationController?.pushViewController(vc, animated: true)
+         
+     }
 }

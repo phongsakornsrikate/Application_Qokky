@@ -3801,6 +3801,9 @@
                                 <rect key="frame" x="267" y="565" width="83" height="85"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="iconAddBill"/>
+                                <connections>
+                                    <action selector="addBill:" destination="TcP-54-OdL" eventType="primaryActionTriggered" id="Zdk-gS-yCi"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

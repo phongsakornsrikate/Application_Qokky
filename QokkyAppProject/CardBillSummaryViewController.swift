@@ -119,9 +119,9 @@ class CardBillSummaryViewController: UIViewController,UITableViewDelegate,UITabl
     
     ///// Confirm order button //////////////////////
       @IBAction func confirmOrder(_ sender:Any){
-          let vc = storyboard?.instantiateViewController(withIdentifier: "CardBillViewController") as! CardBillViewController
-          vc.QrCodeId = self.getQrCodeID
-          vc.foodStoreID = self.getStoreID
+          let vc = storyboard?.instantiateViewController(withIdentifier: "BillConfirmViewController") as! BillConfirmViewController
+          vc.getQrCodeID = self.getQrCodeID
+          vc.getStoreID = self.getStoreID
           vc.billID = billID
           vc.storeID = storeID
           navigationController?.pushViewController(vc, animated: true)
