@@ -1,0 +1,23 @@
+{
+  "images" : [
+    {
+      "filename" : "104753820_194232088587952_5060237955272694278_n-removebg-preview.png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "104753820_194232088587952_5060237955272694278_n-removebg-preview-1.png",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "104753820_194232088587952_5060237955272694278_n-removebg-preview-2.png",
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
